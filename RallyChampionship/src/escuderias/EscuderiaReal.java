@@ -1,32 +1,24 @@
-package rally;
+package escuderias;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import coches.Coche;
 import pilotos.Piloto;
 
-/**
- * Clase modelo para representar una Escuderia
- * @author Jose Ignacio Duque Blazquez
- *
- */
-public class Escuderia {
+public class EscuderiaReal implements Escuderia{
 	//--Atributos--
 	private String nombre;
 	private ArrayList<Piloto> aPilotos;
 	private ArrayList<Coche> aCoches;
 	
 	//--Constructores--
-	public Escuderia() {
+	public EscuderiaReal() {
 		this.nombre = "";
 		this.aPilotos = null;
 		this.aCoches = null;
 	}
-	public Escuderia(String nombre_, ArrayList<Piloto> pilotos_, ArrayList<Coche> coches_) {
+	public EscuderiaReal(String nombre_) {
 		this.nombre = nombre_;
-		this.aPilotos = pilotos_;
-		this.aCoches = coches_;
 	}
 	
 	

@@ -11,19 +11,25 @@ import enumerados.Distancia;
 public class CircuitoReal implements Circuito{
 	//--Atributos--
 	private String nombre;
+	
 	private Distancia distancia;
-	private double distanciaModificada;
-	private Complejidad complejidad;
-	private double complejidadModificada;
+	private double distanciaModificada;		//Tiene la de por defecto o en caso de modificada la modificada
+	
+	private Complejidad complejidad;	
+	private double complejidadModificada; 	//Tiene la de por defecto o en caso de modificada la modificada
 	
 	//--Constructores--
 	public CircuitoReal() {
 		this.nombre = "";
+		this.distanciaModificada = 0.0;
+		this.complejidadModificada = 0.0;
 	}
 	public CircuitoReal(String nombre_, Complejidad complejidad_, Distancia distancia_) {
 		this.nombre = nombre_; 
 		this.complejidad = complejidad_;
+		this.complejidadModificada = complejidad_.getComplejidad();
 		this.distancia = distancia_;
+		this.distanciaModificada = distancia_.getDistancia();
 	}
 
 	//--Getters & Setters
