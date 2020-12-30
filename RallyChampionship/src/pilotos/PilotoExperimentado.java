@@ -8,15 +8,17 @@ import enumerados.Concentracion;
  * @author Jose Ignacio Duque Blazquez
  *
  */
-public class PilotoExperimentado extends Piloto{
+public class PilotoExperimentado extends PilotoReal{
 	//--Constructores
 	public PilotoExperimentado () {
 		super();
 	}
 	
-	public PilotoExperimentado (String nombre_, Coche coche_, Concentracion concentracion_) {
-		super(nombre_, coche_, concentracion_);
+	public PilotoExperimentado (String nombre_,Concentracion concentracion_) {
+		super(nombre_, concentracion_);
 	}
-	
-	//TODO - Calcular destreza
+	@Override
+	public void calcularDestreza() {
+		this.destreza = Math.round((((this.concentracion.getConcentracion() + 3) / 130) * 1.03 ) * 100d) / 100d;
+	}
 }

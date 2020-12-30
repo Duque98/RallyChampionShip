@@ -2,22 +2,19 @@ package decorador;
 
 import circuitos.Circuito;
 import enumerados.Complejidad;
+import enumerados.Distancia;
 
 public class CircuitoFrio extends CircuitoDecorador{
-	public CircuitoFrio(ComplejidadExtra compExtra) {
-		super(compExtra);
+	
+	public CircuitoFrio(Circuito circuito) {
+		super(circuito);
 	}
-
 	@Override
-	public void añadirComplejidadExtra(Circuito circuito) {
-		compExtra.añadirComplejidadExtra(circuito);
-		modificarCondiciones(circuito);
+	public double getComplejidadModificada() {
+		return Math.round((circuito.getComplejidadModificada() * 1.1)* 100d) / 100d;
 	}
-	public void modificarCondiciones(Circuito circuito) {
-		double compNueva = circuito.getComplejidad().getComplejidad() * 1.1;
-		circuito.setComplejidadModificada(compNueva);
-		
-		double distNueva = circuito.getDistancia().getDistancia() * 0.9;
-		circuito.setDistanciaModificada(distNueva);
+	@Override
+	public double getDistanciaModificada() {
+		return Math.round((circuito.getDistanciaModificada() * 0.9)* 100d) / 100d;
 	}
 }

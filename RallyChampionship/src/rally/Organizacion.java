@@ -2,6 +2,7 @@ package rally;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.TreeSet;
 
 import circuitos.Circuito;
@@ -22,7 +23,7 @@ public class Organizacion {
 
 	private TreeSet<Circuito> tsCircuitos;		//Circuitos que componen el campeonato 
 	
-	private ArrayList<Escuderia> aEscuderias;	//Escuderias que se han inscrito para el campeonato TODO - quizas hashSet
+	private HashSet<Escuderia> setEscuderias;	//Escuderias que se han inscrito para el campeonato
 	private ArrayList<Piloto> aPilotos;			//Pilotos que van a competir en una carrera TODO - quizas hashSet
 	
 	
@@ -31,7 +32,7 @@ public class Organizacion {
 		this.limiteAbandonos = limiteAbandonos;
 		this.limitePilotos = limitePilotos;
 		this.tsCircuitos = new TreeSet<Circuito>(ordenCircuitos);
-		this.aEscuderias = new ArrayList<Escuderia>();
+		this.setEscuderias = new HashSet<Escuderia>();
 		this.aPilotos = new ArrayList<Piloto>();
 	}
 	
@@ -52,7 +53,10 @@ public class Organizacion {
 	public void añadirCircuito(Circuito circuito) {
 		this.tsCircuitos.add(circuito);
 	}
-	//TODO - Permitir la inscripcion de las escuderia en el campeonato
+	public void añadirEscuderia(Escuderia escuderia) {
+		this.setEscuderias.add(escuderia);
+	}
+
 	//TODO - Gestionar el desarrollo del campeonato
 	//TODO - Gestionar la celebracion de cada carrera del campeonato
 }

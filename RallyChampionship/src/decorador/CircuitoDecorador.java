@@ -1,16 +1,13 @@
 package decorador;
 
 import circuitos.Circuito;
+import circuitos.CircuitoReal;
 
-public abstract class CircuitoDecorador implements ComplejidadExtra{
-	protected ComplejidadExtra compExtra;
+public abstract class CircuitoDecorador extends CircuitoReal{
+	protected Circuito circuito;
 	
-	public CircuitoDecorador (ComplejidadExtra compExtra) {
-		this.compExtra = compExtra;
-	}
-	
-	@Override
-	public void añadirComplejidadExtra(Circuito circuito) {
-		this.compExtra.añadirComplejidadExtra(circuito);
+	public CircuitoDecorador(Circuito circuito) {
+		super(circuito.getNombre(), circuito.getComplejidad(), circuito.getDistancia());
+		this.circuito = circuito;
 	}
 }

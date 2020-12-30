@@ -1,5 +1,7 @@
 package circuitos;
 
+import java.util.List;
+
 import enumerados.Complejidad;
 import enumerados.Distancia;
 
@@ -16,9 +18,7 @@ public interface Circuito {
 	public int getValorDistancia();
 	public void setDistancia(Distancia distancia);
 	
-	public double getComplejidadModificada();
-	public void setComplejidadModificada(double complejidadModificada);
-	
-	public double getDistanciaModificada();
-	public void setDistanciaModificada(double distanciaModificada);
+	//Metodo para el decorador
+	public abstract double getDistanciaModificada();
+	public abstract double getComplejidadModificada();
 }

@@ -2,6 +2,7 @@ package pilotos;
 
 import java.util.HashMap;
 
+import circuitos.Circuito;
 import coches.Coche;
 import enumerados.Concentracion;
 
@@ -10,55 +11,36 @@ import enumerados.Concentracion;
  * @author Jose Ignacio Duque Blazquez
  *
  */
-public abstract class Piloto {
-	//--Atributos--
-	protected String nombre;
-	protected Coche coche; 	//Asignado por la Escuderia
-	protected Concentracion concentracion;
-	protected double destreza;
-	protected HashMap<String, ResultadoCarrera> hashResultados;
-	protected boolean descalificado; //F - no descalificado, T - descalificado
+public interface Piloto {
+	public String getNombre();
+	public void setNombre(String nombre);
 	
-	//--Constructores--
-	public Piloto() {
-		this.nombre = "";
-		this.destreza = 0.0;
-		this.descalificado = false;
-		this.hashResultados = null;
-	}
-	public Piloto(String nombre_, Coche coche_, Concentracion concentracion_) {
-		this.nombre = nombre_;
-		this.coche = coche_;
-		this.concentracion = concentracion_;
-		this.descalificado=false;
-		this.hashResultados = new HashMap<String, ResultadoCarrera>();
-	}
-
+	public Coche getCoche() ;
+	public void setCoche(Coche coche);
 	
-	//--Getters & Setters--
-	public String getNombre() {return nombre;}
-	public void setNombre(String nombre) {this.nombre = nombre;}
+	public Concentracion getConcentracion() ;
+	public double getValorConcentracion() ;
+	public void setConcentracion(Concentracion concentracion);
 	
-	public Coche getCoche() {return coche;}
-	public void setCoche(Coche coche) {this.coche = coche;}
+	public double getDestreza() ;
+	public void setDestreza(double destreza) ;
 	
-	public Concentracion getConcentracion() {return concentracion;}
-	public double getValorConcentracion() { return this.concentracion.getConcentracion();}
-	public void setConcentracion(Concentracion concentracion) {this.concentracion = concentracion;}
+	public boolean isDescalificado() ;
+	public void setDescalificado(boolean descalificado) ;
 	
-	public double getDestreza() {return destreza;}
-	public void setDestreza(double destreza) {this.destreza = destreza;}
-	
-	public boolean isDescalificado() {return descalificado;}
-	public void setDescalificado(boolean descalificado) {this.descalificado = descalificado;}
-	
-	public HashMap<String, ResultadoCarrera> getHashResultados() {return hashResultados;}
-	public void setHashResultados(HashMap<String, ResultadoCarrera> hashResultados) {this.hashResultados = hashResultados;}
+	public HashMap<String, ResultadoCarrera> getHashResultados() ;
+	public void setHashResultados(HashMap<String, ResultadoCarrera> hashResultados) ;
 	
 	
 	
 	//--Metodos--
-	
+	public void calcularDestreza();
+	public int totalPuntos();
+	public void asignarCoche(Coche coche);
+	public boolean estaDescalificado();
+	public ResultadoCarrera obtenerResultadoCircuito(Circuito circuito);
+	public int totalCarrerasParticipadas();
+	public int totalCarrerasAbandonadas();
 	
 	
 }

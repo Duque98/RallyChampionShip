@@ -8,9 +8,9 @@ import enumerados.Velocidad;
  * @author Jose Ignacio Duque Blazquez
  *
  */
-public class CocheResistente extends Coche{
+public class CocheResistente extends CocheReal{
 	//--Atributos--
-	private int depositoExtra;
+	private int depositoExtra; //TODO - es probable que double
 	
 	//--Constructores--
 	public CocheResistente() {
