@@ -34,22 +34,19 @@ public class CocheReal implements Coche{
 	public void setCombustible(Combustible combustible_) { this.combustible = combustible_;}
 	
 	public double getCombustibleRestante() { return this.combustibleRestante;}
-	//--Metodos--
 	
+	//--Metodos--
 	public double calcularVelocidadReal(Piloto piloto, Circuito circuito) {
-		double velocidadReal = Math.round(((this.velocidad.getVelocidad() *  piloto.getDestreza()) / circuito.getComplejidadModificada())* 100d) / 100d;
-		return velocidadReal;
+		return Math.round(((this.velocidad.getVelocidad() *  piloto.getDestreza()) / circuito.getComplejidadModificada())* 100d) / 100d;
 	}
 	
 	public double tiempoNecesarioFinalizar(Piloto piloto, Circuito circuito) {
-		//tiempo ( en minutos ) = (d istancia del circuito / velocidad real del coche con piloto en circuito ) * 60 ;
-		
-		//double tiempo = (circuito.getDistanciaModificada() / calcularVelocidadReal(piloto, circuito))*60;
-		return 0;
+		return Math.round(((circuito.getDistanciaModificada() / calcularVelocidadReal(piloto, circuito))*60)* 100d) / 100d;
 	}
-	/*TODO - Proporcionar tiempo necesario (en minutos) para terminar la carrera 
-	 *		 por un piloto en particular en un circuito concreto*/
-	//TODO - Reducir combustible de un coche al final de cada carrera de acuerdo a los minutos competidos
+	
+	public void reducirCombustible(Piloto piloto, Circuito circuito) {
+		this.combustibleRestante = this.combustibleRestante - tiempoNecesarioFinalizar(piloto, circuito);
+	}
 
 	//TODO - Metodos de toString, CompareTo,...
 }

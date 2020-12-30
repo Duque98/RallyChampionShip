@@ -24,7 +24,7 @@ public class Organizacion {
 	private TreeSet<Circuito> tsCircuitos;		//Circuitos que componen el campeonato 
 	
 	private HashSet<Escuderia> setEscuderias;	//Escuderias que se han inscrito para el campeonato
-	private ArrayList<Piloto> aPilotos;			//Pilotos que van a competir en una carrera TODO - quizas hashSet
+	private ArrayList<Piloto> aPilotos;			//Pilotos junto al coche que van a competir en una carrera 
 	
 	
 	//--Constructores--
@@ -42,6 +42,14 @@ public class Organizacion {
 		}
 		return org;
 	}
+	
+	public static Organizacion getInstanceWithoutParameter() {
+		if(org != null) {
+			return org;
+		}else {
+			return null;
+		}
+	}
 
 	//--Getters & Setters
 	public int getLimiteAbandonos() {return limiteAbandonos;}
@@ -53,9 +61,11 @@ public class Organizacion {
 	public void añadirCircuito(Circuito circuito) {
 		this.tsCircuitos.add(circuito);
 	}
-	public void añadirEscuderia(Escuderia escuderia) {
+	public void inscribirEscuderia(Escuderia escuderia) {
 		this.setEscuderias.add(escuderia);
 	}
+	
+
 
 	//TODO - Gestionar el desarrollo del campeonato
 	//TODO - Gestionar la celebracion de cada carrera del campeonato

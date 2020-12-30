@@ -13,10 +13,8 @@ import enumerados.Distancia;
 	 */
 public class CircuitoReal implements Circuito{
 	//--Atributos--
-	private String nombre;
-	
+	private String nombre;	
 	private Distancia distancia;
-	
 	private Complejidad complejidad;	
 	
 	

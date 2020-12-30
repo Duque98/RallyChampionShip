@@ -113,7 +113,6 @@ public class CargarDatosCampeonatoCompleto {
 		//ordenaciónCoches: ASCENDENTE por Combustible restante del Coche , en caso de empate por nombre);
 		//peugeot se inscribe en campeonato
 		Escuderia escuderiaPeugeot = new EscuderiaReal("Peugeot",est1);
-		org.añadirEscuderia(escuderiaPeugeot);
 		
 		//escudería citroen 
 		//Crear escuderia citroen con nombre:"Citroen"		
@@ -121,7 +120,6 @@ public class CargarDatosCampeonatoCompleto {
 		//ordenaciónCoches: DESCENDENTE por Combustible restante del Coche , en caso de empate por nombre);
 		//citroen se inscribe en campeonato
 		Escuderia escuderiaCitroen = new EscuderiaReal("Citroen",est2);
-		org.añadirEscuderia(escuderiaCitroen);
 		
 		//escudería seat       
 		//Crear escuderia seat con nombre:"Seat"
@@ -129,7 +127,6 @@ public class CargarDatosCampeonatoCompleto {
 		//ordenaciónCoches: ASCENDENTE por Combustible restante del Coche , en caso de empate por nombre);
 		//seat se inscribe en campeonato
 		Escuderia escuderiaSeat = new EscuderiaReal("Seat",est1);
-		org.añadirEscuderia(escuderiaSeat);
 		
 		//creamos los pilotos y los coches de cada escudería 
 		//coches y pilotos de citroen
@@ -153,6 +150,7 @@ public class CargarDatosCampeonatoCompleto {
 		escuderiaCitroen.añadirPiloto(auriol);
 		
 		escuderiaCitroen.ordenar();
+		escuderiaCitroen.inscribirseAlCampeonato();
 		
 		//coches y pilotos de seat
 		//añadir a seat un CocheResistente(nombre:"Seat Tarraco" - velocidad:TORTUGA - combustible:GENEROSO);
@@ -175,6 +173,7 @@ public class CargarDatosCampeonatoCompleto {
 		escuderiaSeat.añadirPiloto(blomquist);
 		
 		escuderiaSeat.ordenar();
+		escuderiaSeat.inscribirseAlCampeonato();
 		
 		//coches y pilotos de peugeot
 		//añadir a peugeot un CocheResistente(nombre:"Peugeot 5008" - velocidad:LENTA - combustible:GENEROSO);
@@ -197,5 +196,6 @@ public class CargarDatosCampeonatoCompleto {
 		escuderiaPeugeot.añadirPiloto(sordo);
 		
 		escuderiaPeugeot.ordenar();
+		escuderiaPeugeot.inscribirseAlCampeonato();
 	}
 }

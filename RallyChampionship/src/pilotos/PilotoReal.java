@@ -102,7 +102,10 @@ public abstract class PilotoReal implements Piloto{
 		}
 		return totalAbandonadas;
 	}
-	//TODO - aplicar strategy para cambiar coche
+	
+	
+	//TODO -aplicar strategy para cambiar coche
+	//      Debe ser capaz de recibir el coche que le asigne su Escudería y poder cambiarlo entre carrera y carrera
 	
 	/*	TODO muchas cosas en piloto
 	 *  Conducir un coche en un circuito

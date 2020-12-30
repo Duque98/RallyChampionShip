@@ -28,4 +28,6 @@ public interface Escuderia {
 	public void añadirCoche(Coche coche);
 	
 	public void mostrar();
+	
+	public void inscribirseAlCampeonato();
 }

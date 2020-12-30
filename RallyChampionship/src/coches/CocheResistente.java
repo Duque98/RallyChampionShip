@@ -1,7 +1,9 @@
 package coches;
 
+import circuitos.Circuito;
 import enumerados.Combustible;
 import enumerados.Velocidad;
+import pilotos.Piloto;
 
 /**
  * Clase modelo de un subtipo de Coche
@@ -10,7 +12,7 @@ import enumerados.Velocidad;
  */
 public class CocheResistente extends CocheReal{
 	//--Atributos--
-	private int depositoExtra; //TODO - es probable que double
+	private double depositoExtra; //TODO - es probable que double
 	
 	//--Constructores--
 	public CocheResistente() {
@@ -23,12 +25,19 @@ public class CocheResistente extends CocheReal{
 	}
 	
 	//--Getters & Setters
-	public int getDepositoExtra() { return this.depositoExtra;}
-	public void setDepositoExtra(int depositoExtra_) {this.depositoExtra = depositoExtra_;}
+	public double getDepositoExtra() { return this.depositoExtra;}
+	public void setDepositoExtra(double depositoExtra_) {this.depositoExtra = depositoExtra_;}
 	
 	//--Metodos--
-	/*TODO - Reducir combustible (diferente al padre)
-	 *  	 ademas se diferencia en si le queda deposito extra o no*/
+	@Override
+	public void reducirCombustible(Piloto piloto, Circuito circuito) {
+		if(this.depositoExtra > 0 && tiempoNecesarioFinalizar(piloto, circuito) > this.combustibleRestante) {
+			this.combustibleRestante += this.depositoExtra;
+			this.depositoExtra = 0;
+		}else {
+			this.combustibleRestante = this.combustibleRestante - tiempoNecesarioFinalizar(piloto, circuito);
+		}
+	}
 
 	//TODO - Metodos de toString, CompareTo,...
 }

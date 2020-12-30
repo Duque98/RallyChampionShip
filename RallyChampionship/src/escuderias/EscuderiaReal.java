@@ -3,10 +3,13 @@ package escuderias;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import coches.Coche;
 import pilotos.Piloto;
+import pilotos.ResultadoCarrera;
+import rally.Organizacion;
 import strategy.IStrategy;
 
 public class EscuderiaReal implements Escuderia{
@@ -65,8 +68,29 @@ public class EscuderiaReal implements Escuderia{
 			System.out.println(this.aPilotos.get(i).getNombre());
 		}
 	}
+	public int puntosTotales() {
+		int totalPuntos = 0;
+		for (Piloto piloto: this.aPilotos) {
+			for(ResultadoCarrera res : piloto.getHashResultados().values()) {
+				totalPuntos += res.getPuntos();
+			}
+		}
+		return totalPuntos;
+	}
 	
-	//TODO - Inscribirse en un campeonato gestionado por la organizacion
-	//TODO - Informacion sobre los puntos totales obtenidos por sus pilotos
+	public void inscribirseAlCampeonato() {
+		Organizacion.getInstanceWithoutParameter().inscribirEscuderia(this);
+	}
+	
+	
 	//TODO - Enviar a los pilotos (no descalificados) junto a sus coches (con combustible) a la organizacion para competir
+	public void enviarPilotosCochesAlCampeonato() {
+		if(!this.aPilotos.isEmpty() && !this.aCoches.isEmpty()) {
+			for (int i = 0; i < this.aPilotos.size() && i < this.aCoches.size(); i++) {
+				if(!this.aPilotos.get(i).isDescalificado()) {
+					
+				}
+			}
+		}
+	}
 }
