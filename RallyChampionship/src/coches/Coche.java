@@ -24,6 +24,9 @@ public interface Coche {
 	
 	public double getCombustibleRestante();
 	
+	public boolean tieneCombustibleRestante() ;
+	
 	public double calcularVelocidadReal(Piloto piloto, Circuito circuito);
 	public double tiempoNecesarioFinalizar(Piloto piloto, Circuito circuito);
+	public void reducirCombustible(Piloto piloto, Circuito circuito);
 }

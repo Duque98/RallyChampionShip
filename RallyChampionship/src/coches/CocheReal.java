@@ -35,6 +35,14 @@ public class CocheReal implements Coche{
 	
 	public double getCombustibleRestante() { return this.combustibleRestante;}
 	
+	public boolean tieneCombustibleRestante() {
+		if(this.combustibleRestante > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	//--Metodos--
 	public double calcularVelocidadReal(Piloto piloto, Circuito circuito) {
 		return Math.round(((this.velocidad.getVelocidad() *  piloto.getDestreza()) / circuito.getComplejidadModificada())* 100d) / 100d;

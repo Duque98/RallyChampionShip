@@ -30,4 +30,5 @@ public interface Escuderia {
 	public void mostrar();
 	
 	public void inscribirseAlCampeonato();
+	public void enviarPilotosAlCampeonato();
 }

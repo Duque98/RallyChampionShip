@@ -12,6 +12,7 @@ import pilotos.ResultadoCarrera;
 import rally.Organizacion;
 import strategy.IStrategy;
 
+
 public class EscuderiaReal implements Escuderia{
 	//Strategy
 	private IStrategy strategy;
@@ -72,6 +73,7 @@ public class EscuderiaReal implements Escuderia{
 		int totalPuntos = 0;
 		for (Piloto piloto: this.aPilotos) {
 			for(ResultadoCarrera res : piloto.getHashResultados().values()) {
+				//TODO - Creo que falta condicion de que el piloto no este descalificado if(piloto.isDescalificado())
 				totalPuntos += res.getPuntos();
 			}
 		}
@@ -82,15 +84,27 @@ public class EscuderiaReal implements Escuderia{
 		Organizacion.getInstanceWithoutParameter().inscribirEscuderia(this);
 	}
 	
-	
-	//TODO - Enviar a los pilotos (no descalificados) junto a sus coches (con combustible) a la organizacion para competir
-	public void enviarPilotosCochesAlCampeonato() {
-		if(!this.aPilotos.isEmpty() && !this.aCoches.isEmpty()) {
-			for (int i = 0; i < this.aPilotos.size() && i < this.aCoches.size(); i++) {
-				if(!this.aPilotos.get(i).isDescalificado()) {
-					
+	public void enviarPilotosAlCampeonato() {
+		ArrayList<Piloto> pilotoEnviar = new ArrayList<Piloto>();
+		if(!this.aPilotos.isEmpty()) {
+			for (Piloto piloto : this.aPilotos) {
+				if(!piloto.isDescalificado()) {
+					if(!this.aCoches.isEmpty()) {
+						int j = 0;
+						boolean enc = false;
+						while(j < this.aCoches.size() && !enc) {
+							if(this.aCoches.get(j).tieneCombustibleRestante()) {
+								piloto.setCoche(this.aCoches.get(j));
+								enc = true;
+							}else {
+								piloto.setCoche(null);
+							}
+						}
+					}
+					pilotoEnviar.add(piloto);
 				}
 			}
 		}
+		Organizacion.getInstanceWithoutParameter().recibirPilotosDelCampeonato(pilotoEnviar);
 	}
 }

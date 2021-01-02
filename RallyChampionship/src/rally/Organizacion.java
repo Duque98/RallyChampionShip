@@ -65,6 +65,10 @@ public class Organizacion {
 		this.setEscuderias.add(escuderia);
 	}
 	
+	public void recibirPilotosDelCampeonato(ArrayList<Piloto> pilotos) {
+		this.aPilotos = pilotos;
+	}
+	
 
 
 	//TODO - Gestionar el desarrollo del campeonato
