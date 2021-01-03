@@ -12,7 +12,7 @@ import pilotos.Piloto;
  */
 public class CocheResistente extends CocheReal{
 	//--Atributos--
-	private double depositoExtra; //TODO - es probable que double
+	private double depositoExtra; 
 	
 	//--Constructores--
 	public CocheResistente() {

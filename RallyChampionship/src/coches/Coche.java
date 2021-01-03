@@ -23,10 +23,12 @@ public interface Coche {
 	public void setCombustible(Combustible combustible_);
 	
 	public double getCombustibleRestante();
-	
+	public void setCombustibleRestante(double combustibleRestante);
 	public boolean tieneCombustibleRestante() ;
 	
 	public double calcularVelocidadReal(Piloto piloto, Circuito circuito);
 	public double tiempoNecesarioFinalizar(Piloto piloto, Circuito circuito);
 	public void reducirCombustible(Piloto piloto, Circuito circuito);
+	
+	public void restarCombustible(double concentracion);
 }

@@ -50,16 +50,16 @@ public class CircuitoReal implements Circuito{
 		return this.complejidad.getComplejidad();
 	}
 	
-	//--Metodos--
-	
-	
-	//TODO - Metodos de toString, CompareTo,...
-	
+	//--Metodos--	
 	@Override
 	public String toString() {
-		//TODO -dos toString, 
-		return "<circuito: " + this.nombre + " > <cond: " +" >"; 
+		return "<circuito:" + this.nombre + "> <cond: " + toComplicacion() +"> <comp: " + this.complejidad.getNombre() + "(original:" + this.complejidad.getComplejidad() +
+				") (actual:" + this.getComplejidadModificada() + ")> <dist: " + this.distancia.getNombre() + "(orginial:" + this.distancia.getDistancia() +
+				") (actual:" + this.getDistanciaModificada() + ")>"; 
 	}
-	
+	@Override
+	public String toComplicacion() {
+		return "";
+	}
 
 }

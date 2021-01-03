@@ -7,22 +7,22 @@ package pilotos;
  */
 public class ResultadoCarrera {
 	//--Atributos --
-	private int tiempo;	//Medido en minutos
+	private double tiempo;	//Medido en minutos
 	private int puntos;
 	
 	//--Constructores
 	public ResultadoCarrera() {
-		this.tiempo = 0;
+		this.tiempo = 0.0;
 		this.puntos = 0;
 	}
-	public ResultadoCarrera(int tiempo_, int puntos_) {
+	public ResultadoCarrera(double tiempo_, int puntos_) {
 		this.tiempo = tiempo_;
 		this.puntos = puntos_;
 	}
 	
 	//--Getters & Setters
-	public int getTiempo() {return tiempo;}
-	public void setTiempo(int tiempo) {this.tiempo = tiempo;}
+	public double getTiempo() {return tiempo;}
+	public void setTiempo(double tiempo) {this.tiempo = tiempo;}
 	public int getPuntos() {return puntos;}
 	public void setPuntos(int puntos) {this.puntos = puntos;}
 	

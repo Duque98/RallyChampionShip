@@ -13,8 +13,12 @@ public class CircuitoGravilla extends CircuitoDecorador{
 	public double getComplejidadModificada() {
 		return Math.round((circuito.getComplejidadModificada() * 1.05)* 100d) / 100d;
 	}
-	
+	@Override
 	public double getDistanciaModificada() {
 		return Math.round((circuito.getDistanciaModificada() * 0.95)* 100d) / 100d;
+	}
+	@Override
+	public String toComplicacion() {
+		return circuito.toComplicacion() +"Gravilla ";
 	}
 }

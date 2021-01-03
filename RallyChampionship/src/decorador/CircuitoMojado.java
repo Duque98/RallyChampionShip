@@ -11,10 +11,12 @@ public class CircuitoMojado extends CircuitoDecorador{
 	public double getComplejidadModificada() {
 		return Math.round((circuito.getComplejidadModificada() * 1.15)* 100d) / 100d;
 	}
-	
+	@Override
 	public double getDistanciaModificada() {
 		return Math.round((circuito.getDistanciaModificada() * 0.85)* 100d) / 100d;
 	}
-	
-	
+	@Override
+	public String toComplicacion() {
+		return circuito.toComplicacion() + "Mojado ";
+	}
 }

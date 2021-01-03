@@ -21,8 +21,4 @@ public enum Concentracion {
 	public String getNombre() { return this.nombre;}
 	public double getConcentracion() {return this.concentracion;}
 	
-	@Override
-	public String toString() {
-		return getNombre() + "(original: "+getConcentracion()+")";
-	}
 }

@@ -12,7 +12,7 @@ public abstract class PilotoReal implements Piloto{
 	protected Coche coche; 	//Asignado por la Escuderia
 	protected Concentracion concentracion;
 	protected double destreza;
-	protected HashMap<String, ResultadoCarrera> hashResultados;
+	protected HashMap<String, ResultadoCarrera> hashResultados; //NombreCircuito, resultado
 	protected boolean descalificado; //F - no descalificado, T - descalificado
 	
 	//--Constructores--
@@ -103,24 +103,22 @@ public abstract class PilotoReal implements Piloto{
 		return totalAbandonadas;
 	}
 	
+	public void conducirCoche(Circuito circuito) {
+		if(this.coche.tiempoNecesarioFinalizar(this, circuito) < this.concentracion.getConcentracion() && this.coche.tieneCombustibleRestante()) {
+			ResultadoCarrera res = new ResultadoCarrera(this.coche.tiempoNecesarioFinalizar(this, circuito), 0); //TODO - los puntos habra que mirar como hacerlo
+			this.hashResultados.put(circuito.getNombre(), res);
+			this.coche.reducirCombustible(this, circuito);
+		}else if(this.coche.tiempoNecesarioFinalizar(this, circuito) > this.concentracion.getConcentracion()) {
+			ResultadoCarrera res = new ResultadoCarrera(this.concentracion.getConcentracion() - this.coche.tiempoNecesarioFinalizar(this, circuito), 0); //TODO - los puntos habra que mirar como hacerlo
+			this.hashResultados.put(circuito.getNombre(), res); 
+			this.coche.restarCombustible(this.concentracion.getConcentracion());
+		}else {
+			ResultadoCarrera res = new ResultadoCarrera(this.coche.getCombustibleRestante() - this.coche.tiempoNecesarioFinalizar(this, circuito), 0);//TODO - los puntos habra que mirar como hacerlo
+			this.hashResultados.put(circuito.getNombre(), res);
+			this.coche.restarCombustible(this.coche.tiempoNecesarioFinalizar(this, circuito));
+		}
+	}
+	
 	
 	//TODO -aplicar strategy para cambiar coche
-	//      Debe ser capaz de recibir el coche que le asigne su Escudería y poder cambiarlo entre carrera y carrera
-	
-	/*	TODO muchas cosas en piloto
-	 *  Conducir un coche en un circuito
-	 *   - si el piloto, conduciendo el coche asignado en el circuito indicado, 
-	 *    guarda los resultados el tiempo (minutos) y resta el combustible del coche 
-	 *    utilizado el numero de minutos que ha tardado en finalizar la carrera
-	 *    
-	 *   - si la concentracion del piloto no es suficiente,
-	 *    guarda en resultados el numero negativo que indica los minutos de concentracion
-	 *    extra que hubiera necesitado para poder terminar y resta el combustible del coche
-	 *    utilizando el numero de minutos que ha estado correindo hasta que ha perdido la concentracion
-	 *    
-	 *   - si el coche se quedo sin combustible,
-	 *    guarda en resultado el numero negativo que indica los minutos de combustible extra que 
-	 *    hubiera necesitado para terminar, y resta al combustible del coche el numero de 
-	 *    minutos que ha estado corriendo hasta que se ha quedado sin combustible 
-	 */
 }

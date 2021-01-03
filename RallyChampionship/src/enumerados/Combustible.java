@@ -22,8 +22,4 @@ public enum Combustible {
 	public String getNombre() { return this.nombre; }
 	public double getCombustible() { return this.combustible;}
 	
-	@Override
-	public String toString() {
-		return getNombre() + "(original: "+getCombustible()+")";
-	}
 }

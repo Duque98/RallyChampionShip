@@ -72,5 +72,24 @@ public class Organizacion {
 
 
 	//TODO - Gestionar el desarrollo del campeonato
+	public void simulacion() {
+		System.out.println("*********************************************************************************************************\r\n" + 
+							"*****************ESTA SIMULACIÓN CONCLUYE NORMALMENTE COMPLETÁNDOSE TODAS LAS CARRERAS*******************\r\n" + 
+							"*********************************************************************************************************\r\n" + 
+							"\r\n" + "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\r\n" + 
+							"||||||||||||||||||| CIRCUITOS DEL CAMPEONATO |||||||||||||||||||\r\n" + 
+							"||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		for(Circuito circuito : this.tsCircuitos) {
+			System.out.println(circuito.toString());
+		}
+		System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\r\n");
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\r\n" + 
+							"%%%%%%%% ESCUDERÍAS DEL CAMPEONATO %%%%%%%%\r\n" + 
+							"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\r\n" + 
+							"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		for(Escuderia escuderia : this.setEscuderias) {
+			System.out.println("%%% " + escuderia.getNombre() + " %%%");
+		}
+	}
 	//TODO - Gestionar la celebracion de cada carrera del campeonato
 }

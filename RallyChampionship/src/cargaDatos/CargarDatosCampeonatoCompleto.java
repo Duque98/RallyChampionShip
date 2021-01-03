@@ -33,9 +33,6 @@ import strategy.IStrategy;
 
 public class CargarDatosCampeonatoCompleto {
 	public CargarDatosCampeonatoCompleto(){
-		System.out.println("*********************************************************************************************************");
-		System.out.println("*****************ESTA SIMULACIÃ“N CONCLUYE NORMALMENTE COMPLETÃ�NDOSE TODAS LAS CARRERAS*******************");        
-		System.out.println("*********************************************************************************************************\n");
 		//organizador debe ser una instancia única con la siguiente configuración:
 		//LimiteAbandonos=3, LimitePilotos=2, 		
 		// Circuitos ordenados de forma descendente de acuerdo a su distancia

@@ -12,7 +12,7 @@ import pilotos.Piloto;
  */
 public class CocheRapido extends CocheReal{
 	//--Atributos--
-	private double depositoNitro;//TODO - es probable que double
+	private double depositoNitro;
 	
 	//--Constructores--
 	public CocheRapido() {

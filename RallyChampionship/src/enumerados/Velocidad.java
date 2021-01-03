@@ -22,8 +22,4 @@ public enum Velocidad {
 	public String getNombre() { return this.nombre; }
 	public double getVelocidad() {return this.velocidad; }
 	
-	@Override
-	public String toString() {
-		return getNombre() + "(original: "+getVelocidad()+")";
-	}
 }

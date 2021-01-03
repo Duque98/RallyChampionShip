@@ -42,5 +42,5 @@ public interface Piloto {
 	public int totalCarrerasParticipadas();
 	public int totalCarrerasAbandonadas();
 	
-	
+	public void conducirCoche(Circuito circuito);
 }

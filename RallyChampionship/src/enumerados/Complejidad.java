@@ -20,8 +20,4 @@ public enum Complejidad {
 	public String getNombre() { return this.nombre;}
 	public double getComplejidad() {return this.complejidad;}
 	
-	@Override
-	public String toString() {
-		return getNombre() + "(original: "+ getComplejidad() + ")";
-	}
 }

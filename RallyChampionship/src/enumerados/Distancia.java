@@ -21,8 +21,4 @@ public enum Distancia {
 	public int getDistancia() {return this.distancia;}
 	public String getNombre() {return this.nombre;}
 	
-	@Override
-	public String toString() {
-		return getNombre() + "(original: "+getDistancia()+")";
-	}
 }

@@ -21,4 +21,7 @@ public interface Circuito {
 	//Metodo para el decorador
 	public abstract double getDistanciaModificada();
 	public abstract double getComplejidadModificada();
+	
+	public String toString();
+	public String toComplicacion();
 }

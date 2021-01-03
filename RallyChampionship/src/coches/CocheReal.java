@@ -34,7 +34,7 @@ public class CocheReal implements Coche{
 	public void setCombustible(Combustible combustible_) { this.combustible = combustible_;}
 	
 	public double getCombustibleRestante() { return this.combustibleRestante;}
-	
+	public void setCombustibleRestante(double combustibleRestante) { this.combustibleRestante = combustibleRestante;}
 	public boolean tieneCombustibleRestante() {
 		if(this.combustibleRestante > 0) {
 			return true;
@@ -54,6 +54,10 @@ public class CocheReal implements Coche{
 	
 	public void reducirCombustible(Piloto piloto, Circuito circuito) {
 		this.combustibleRestante = this.combustibleRestante - tiempoNecesarioFinalizar(piloto, circuito);
+	}
+	
+	public void restarCombustible(double combustible) {
+		this.combustibleRestante = this.combustibleRestante - combustible;
 	}
 
 	//TODO - Metodos de toString, CompareTo,...
