@@ -118,7 +118,11 @@ public abstract class PilotoReal implements Piloto{
 			this.coche.restarCombustible(this.coche.tiempoNecesarioFinalizar(this, circuito));
 		}
 	}
-	
+	@Override
+	public String toString() {
+		return "<piloto:" + this.nombre + "> <tipo: "+ getClass().getSimpleName() + "> <dest: " + this.destreza + "> <conc: " + this.concentracion.getNombre() + "(" + this.concentracion.getConcentracion() +
+				")> <descalificado:" + this.descalificado + ">";
+	}
 	
 	//TODO -aplicar strategy para cambiar coche
 }

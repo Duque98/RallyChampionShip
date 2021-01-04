@@ -40,4 +40,9 @@ public class CocheResistente extends CocheReal{
 	}
 
 	//TODO - Metodos de toString, CompareTo,...
+	@Override
+	public String toString() {
+		return "<coche: " + this.nombre + "> <tipo: CocheResistente> <vel_teó: " + this.velocidad.getNombre() + "(" + this.velocidad.getVelocidad() + 
+				")> <comb: " + this.combustible.getNombre() + "(" + this.combustible.getCombustible() + ")(actual:" + this.combustibleRestante + ")>> <reserva: " + this.depositoExtra + ">";
+	}
 }

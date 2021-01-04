@@ -30,5 +30,12 @@ public interface Escuderia {
 	public void mostrar();
 	
 	public void inscribirseAlCampeonato();
-	public void enviarPilotosAlCampeonato();
+	public void enviarPilotoAlCampeonato();
+	
+	public int puntosTotales();
+	public int totalCarrerasTerminadas();
+	
+	
+	public boolean tienePilotosDisponibles();
+	public int cuantosPilotoDisponibles() ;
 }

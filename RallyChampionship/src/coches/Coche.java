@@ -31,4 +31,6 @@ public interface Coche {
 	public void reducirCombustible(Piloto piloto, Circuito circuito);
 	
 	public void restarCombustible(double concentracion);
+	
+	
 }

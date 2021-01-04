@@ -42,10 +42,14 @@ public class CocheRapido extends CocheReal{
 				this.depositoNitro = 0;
 			}
 		}
-		return velocidadReal;
+		return Math.round((velocidadReal)* 100d) / 100d;
 	}
 	
 
 	//TODO - Metodos de toString, CompareTo,...
-	
+	@Override
+	public String toString() {
+		return "<coche: " + this.nombre + "> <tipo:CocheRapido> <vel_teó: " + this.velocidad.getNombre() + "(" + this.velocidad.getVelocidad() + 
+				")> <comb: " + this.combustible.getNombre() + "(" + this.combustible.getCombustible() + ")(actual:" + this.combustibleRestante + ")>> <nitroPendiente: " + this.depositoNitro + ">";
+	}
 }

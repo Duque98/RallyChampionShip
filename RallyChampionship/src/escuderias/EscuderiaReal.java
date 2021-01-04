@@ -84,27 +84,95 @@ public class EscuderiaReal implements Escuderia{
 		Organizacion.getInstanceWithoutParameter().inscribirEscuderia(this);
 	}
 	
-	public void enviarPilotosAlCampeonato() {
-		ArrayList<Piloto> pilotoEnviar = new ArrayList<Piloto>();
-		if(!this.aPilotos.isEmpty()) {
-			for (Piloto piloto : this.aPilotos) {
-				if(!piloto.isDescalificado()) {
-					if(!this.aCoches.isEmpty()) {
-						int j = 0;
+	public void enviarPilotoAlCampeonato() {
+		if(quedanCochesConCombustible()) {
+			if(!this.aPilotos.isEmpty()) {
+				int i = 0;
+				int j = 0;
+				boolean pilotoEnviado = false;
+				while (i < this.aPilotos.size() && !pilotoEnviado) {
+					Piloto piloto = this.aPilotos.get(i);
+					if(!piloto.isDescalificado()) {			
 						boolean enc = false;
 						while(j < this.aCoches.size() && !enc) {
-							if(this.aCoches.get(j).tieneCombustibleRestante()) {
-								piloto.setCoche(this.aCoches.get(j));
+							Coche coche = this.aCoches.get(j);
+							if(coche.tieneCombustibleRestante()) {
+								piloto.setCoche(coche);
 								enc = true;
+								this.aCoches.remove(coche);
+								this.aCoches.add(coche);
 							}else {
 								piloto.setCoche(null);
 							}
+							j++;
 						}
+						Organizacion.getInstanceWithoutParameter().recibirPilotoDelCampeonato(piloto);
+						pilotoEnviado = true;
+						this.aPilotos.remove(piloto);
+						this.aPilotos.add(piloto);
 					}
-					pilotoEnviar.add(piloto);
 				}
 			}
 		}
-		Organizacion.getInstanceWithoutParameter().recibirPilotosDelCampeonato(pilotoEnviar);
+	}
+	
+	//Devuelve true si todavia tiene algun coche con combustible
+	public boolean quedanCochesConCombustible() {
+		boolean quedanCoches = false;
+		if(!this.aCoches.isEmpty()) {
+			int i = 0;
+			while (i < this.aCoches.size() && !quedanCoches){
+				if(this.aCoches.get(i).tieneCombustibleRestante()) {
+					quedanCoches = true;
+				}
+				i++;
+			}
+		}
+		return quedanCoches;
+	}
+	
+	public int totalCarrerasTerminadas() {
+		int totalTerminadas = 0;
+		for(Piloto piloto : this.aPilotos) {
+			totalTerminadas += piloto.totalCarrerasParticipadas();
+		}
+		return totalTerminadas;
+	}
+	
+	//Devuelve true si todavia tiene algun piloto sin descalificar
+	public boolean tienePilotosDisponibles() {
+		int i = 0;
+		boolean quedanPilotos = false;
+		while (i < this.aPilotos.size() && !quedanPilotos) {
+			if(!this.aPilotos.get(i).isDescalificado()) { //No esta descalificado
+				quedanPilotos = true;
+			}
+			i++;
+		}
+		return quedanPilotos;
+	}
+	public int cuantosPilotoDisponibles() {
+		int pilotosDisponibles = 0;
+		for(Piloto piloto : this.aPilotos) {
+			if(!piloto.isDescalificado()) {
+				pilotosDisponibles++;
+			}
+		}
+		return pilotosDisponibles;
+	}
+	
+	@Override
+	public String toString() {
+		String aux = "";
+		aux = "%%% " + this.nombre + " %%%" + "\n";
+		for(Piloto piloto : this.aPilotos) {
+			aux += piloto.toString();
+			aux += "\n";
+		}
+		for(Coche coche : this.aCoches) {
+			aux += coche.toString();
+			aux += "\n";
+		}
+		return aux;
 	}
 }

@@ -35,6 +35,9 @@ public class CocheReal implements Coche{
 	
 	public double getCombustibleRestante() { return this.combustibleRestante;}
 	public void setCombustibleRestante(double combustibleRestante) { this.combustibleRestante = combustibleRestante;}
+	
+	
+	//--Metodos--
 	public boolean tieneCombustibleRestante() {
 		if(this.combustibleRestante > 0) {
 			return true;
@@ -43,7 +46,6 @@ public class CocheReal implements Coche{
 		}
 	}
 	
-	//--Metodos--
 	public double calcularVelocidadReal(Piloto piloto, Circuito circuito) {
 		return Math.round(((this.velocidad.getVelocidad() *  piloto.getDestreza()) / circuito.getComplejidadModificada())* 100d) / 100d;
 	}
@@ -61,4 +63,10 @@ public class CocheReal implements Coche{
 	}
 
 	//TODO - Metodos de toString, CompareTo,...
+	@Override
+	public String toString() {
+		return "<coche: " + this.nombre + "> <tipo: CocheNormal> <vel_teó: " + this.velocidad.getNombre() + "(" + this.velocidad.getVelocidad() + 
+				")> <comb: " + this.combustible.getNombre() + "(" + this.combustible.getCombustible() + ")(actual:" + this.combustibleRestante + ")>";
+	}
+	
 }

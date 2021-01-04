@@ -132,7 +132,7 @@ public class CargarDatosCampeonatoCompleto {
 		//añadir a citroen un Coche(nombre:"Citröen C3" - velocidad:RAPIDA - combustible:ESCASO);
 		Coche citroenC5 = new CocheResistente("Citröen C5", Velocidad.RAPIDA, Combustible.ELEFANTE);
 		Coche citroenC4 = new CocheRapido("Citröen C4", Velocidad.RAPIDA, Combustible.ESCASO);
-		Coche citroenC3 = new CocheReal("Citöen C3", Velocidad.RAPIDA, Combustible.ESCASO);
+		Coche citroenC3 = new CocheReal("Citröen C3", Velocidad.RAPIDA, Combustible.ESCASO);
 		escuderiaCitroen.añadirCoche(citroenC5);
 		escuderiaCitroen.añadirCoche(citroenC4);
 		escuderiaCitroen.añadirCoche(citroenC3);
