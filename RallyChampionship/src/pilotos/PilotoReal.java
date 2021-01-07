@@ -61,7 +61,11 @@ public abstract class PilotoReal implements Piloto{
 	}
 	
 	public ResultadoCarrera obtenerResultadoCircuito(Circuito circuito) {
-		return this.hashResultados.get(circuito.getNombre());
+		if(this.hashResultados.containsKey(circuito.getNombre())) {
+			return this.hashResultados.get(circuito.getNombre());			
+		}else {
+			return null;
+		}
 	}
 	
 	public void añadirPuntos(Circuito circuito, double tiempo, int puntos) {
@@ -129,8 +133,6 @@ public abstract class PilotoReal implements Piloto{
 			ResultadoCarrera res = new ResultadoCarrera(combustibleNecesario, 0);
 			this.hashResultados.put(circuito.getNombre(), res);
 			this.coche.reducirCombustible(tiempoNecesario);
-			//System.out.println("¡¡¡ El " + this.coche.getNombre() + " se quedó sin combustible a falta de " + (combustibleNecesario * -1)+ " minutos para terminar !!!");
-			//System.out.println("¡¡¡ En el momento de quedarse sin combustible llevaba en carrera " + Math.round(((tiempoNecesario - (combustibleNecesario * -1)))* 100d) / 100d + " minutos !!!");
 			if(this.concentracion.getConcentracion() <= this.coche.getCombustibleRestante()) { 
 				System.out.println("¡¡¡ "+ this.nombre + " perdió la concentración a falta de " + (concentracionNecesaria * -1)+ " minutos para terminar !!!");
 				System.out.println("¡¡¡ En el momento del despiste llevaba en carrera " + this.concentracion.getConcentracion()  + " minutos !!!");

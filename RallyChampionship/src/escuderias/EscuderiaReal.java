@@ -73,9 +73,9 @@ public class EscuderiaReal implements Escuderia{
 	public int puntosTotales() {
 		int totalPuntos = 0;
 		for (Piloto piloto: this.aPilotos) {
-			for(ResultadoCarrera res : piloto.getHashResultados().values()) {
-				//TODO - Creo que falta condicion de que el piloto no este descalificado if(piloto.isDescalificado())
-				totalPuntos += res.getPuntos();
+			if(!piloto.isDescalificado()) {
+				totalPuntos += piloto.totalPuntos();
+				
 			}
 		}
 		return totalPuntos;
@@ -163,7 +163,7 @@ public class EscuderiaReal implements Escuderia{
 		return totalTerminadas;
 	}
 	
-	//Devuelve true si todavia tiene algun piloto sin descalificar
+	//Devuelve true si todavia tiene algun piloto sin descalificar, devuelve false si todos descalificados
 	public boolean tienePilotosDisponibles() {
 		int i = 0;
 		boolean quedanPilotos = false;
@@ -184,7 +184,6 @@ public class EscuderiaReal implements Escuderia{
 		}
 		return pilotosDisponibles;
 	}
-	
 	@Override
 	public String toString() {
 		String aux = "";
