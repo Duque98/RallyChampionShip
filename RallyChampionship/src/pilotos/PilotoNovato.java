@@ -18,7 +18,7 @@ public class PilotoNovato extends PilotoReal{
 		super(nombre_, concentracion_);
 	}
 	@Override
-	public void calcularDestreza() {
-		this.destreza = Math.round((((this.concentracion.getConcentracion() * 0.97) / 120) - 0.03 ) * 100d) / 100d;
+	public double calcularDestreza() {
+		return Math.round((((this.concentracion.getConcentracion() * 0.97) / 120) - 0.03 ) * 100d) / 100d;
 	}
 }

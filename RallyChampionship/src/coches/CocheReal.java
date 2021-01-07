@@ -47,19 +47,21 @@ public class CocheReal implements Coche{
 	}
 	
 	public double calcularVelocidadReal(Piloto piloto, Circuito circuito) {
-		return Math.round(((this.velocidad.getVelocidad() *  piloto.getDestreza()) / circuito.getComplejidadModificada())* 100d) / 100d;
+		double velocidad =  Math.round(((this.velocidad.getVelocidad() *  piloto.calcularDestreza()) / circuito.getComplejidadModificada())* 100d) / 100d;
+		System.out.println("+++ Con estas condiciones es capaz de correr a " + velocidad + " km/hora +++");
+		return velocidad;
 	}
 	
 	public double tiempoNecesarioFinalizar(Piloto piloto, Circuito circuito) {
 		return Math.round(((circuito.getDistanciaModificada() / calcularVelocidadReal(piloto, circuito))*60)* 100d) / 100d;
 	}
 	
-	public void reducirCombustible(Piloto piloto, Circuito circuito) {
-		this.combustibleRestante = this.combustibleRestante - tiempoNecesarioFinalizar(piloto, circuito);
+	public void reducirCombustible(double tiempo) {
+		this.combustibleRestante = Math.round((this.combustibleRestante - tiempo)* 100d) / 100d;
 	}
 	
 	public void restarCombustible(double combustible) {
-		this.combustibleRestante = this.combustibleRestante - combustible;
+		this.combustibleRestante = Math.round((this.combustibleRestante - combustible)* 100d) / 100d;
 	}
 
 	//TODO - Metodos de toString, CompareTo,...

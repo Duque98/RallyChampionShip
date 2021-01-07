@@ -3,6 +3,7 @@ package rally;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -11,8 +12,10 @@ import java.util.TreeSet;
 import circuitos.Circuito;
 import comparators.EscuderiaTotalPuntosComparator;
 import comparators.PilotoParrillaSalidaComparator;
+import comparators.TiempoCarreraComparator;
 import escuderias.Escuderia;
 import pilotos.Piloto;
+import pilotos.ResultadoCarrera;
 
 /**
  * Clase modelo para representar la Organizacion
@@ -98,10 +101,13 @@ public class Organizacion {
 			System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 		}
 		System.out.println("");
+		
 		gestionarCelebracionCarrera();
+		
+		//TODO - fin del campeonato
 	}
 	
-	//TODO - Gestionar la celebracion de cada carrera del campeonato
+	
 	public void gestionarCelebracionCarrera() {
 		int numCarrera = 1;
 		Iterator<Circuito> it = this.tsCircuitos.iterator();
@@ -110,9 +116,6 @@ public class Organizacion {
 			System.out.println("********************************************************************************************************");
 			System.out.println("*** CARRERA <" + numCarrera + "> EN " + circuito.toString() + " ***");
 			System.out.println("********************************************************************************************************");
-			System.out.println("********************************************************************************************************");
-			System.out.println("******************************** Pilotos que van a competir en " + circuito.getNombre() + " *******************************");
-			System.out.println("**********************************************************************************************************");
 			
 			for (int pilotoEnviados = 0; pilotoEnviados < this.limitePilotos; pilotoEnviados++) {
 				for(Escuderia escuderia : this.aEscuderias) {
@@ -120,6 +123,9 @@ public class Organizacion {
 				}
 			}
 			
+			System.out.println("********************************************************************************************************");
+			System.out.println("******************************** Pilotos que van a competir en " + circuito.getNombre() + " *******************************");
+			System.out.println("**********************************************************************************************************");
 			//Ordenar los pilotos
 			Collections.sort(this.aPilotos, new PilotoParrillaSalidaComparator());
 			
@@ -140,19 +146,108 @@ public class Organizacion {
 					System.out.println(piloto.toString() + " con ");
 					System.out.println(piloto.getCoche().toString());
 					
-					System.out.println("+++ Con estas condiciones es capaz de correr a " + piloto.getCoche().calcularVelocidadReal(piloto, circuito)+ "km/hora +++");
-					
-					//TODO- vamos por aqui
-					
-					
-					numeroPiloto++;
+					piloto.conducirCoche(circuito);
+									
+					System.out.println("+++ El combustible del " + piloto.getCoche().getNombre() + " tras la carrera es " + piloto.getCoche().getCombustibleRestante() + " +++");
 					System.out.println("@@@");
+					numeroPiloto++;
+
+					if(piloto.totalCarrerasAbandonadas() >= this.limiteAbandonos) {
+						System.out.println("@@@");
+						System.out.println("¡¡¡ " + piloto.getNombre() + " es DESCALIFICADO del campeonato por alcanzar el límite de abandonos(" + this.limiteAbandonos + ") !!!");
+						System.out.println("@@@");
+						piloto.setDescalificado(true);
+					}
+					
+					
+					//Devolvemos el piloto y el coche a su escuderia
+					boolean enc = false;
+					int i= 0;
+					while(!enc) {
+						Escuderia escuderia = this.aEscuderias.get(i);
+						if(escuderia.getNombre().equals(piloto.getEscuderia())) {
+							enviarPilotoCocheAEscuderia(escuderia, piloto);
+							enc=true;
+						}
+						i++;
+					}
+				
 				}
+				
+				clasificacionCarrera(circuito);
+				
+				
+				
 			}
 			this.aPilotos = new ArrayList<Piloto>();
+			numCarrera++;
 		}
+		
+		
 	}
 	
+	public void clasificacionCarrera(Circuito circuito) {
+		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("+++++++++++++++++ Clasificación final de la carrera en " + circuito.getNombre() + " ++++++++++++++++++");
+		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		ArrayList<Piloto> auxNegativo = new ArrayList<Piloto>();
+		ArrayList<Piloto> auxPositivo = new ArrayList<Piloto>();
+		for(Piloto piloto : this.aPilotos) {
+			if(piloto.obtenerResultadoCircuito(circuito).getTiempo() < 0.0) {
+				auxNegativo.add(piloto);				
+			}else {
+				auxPositivo.add(piloto);
+			}
+		}
+		
+		Collections.sort(auxPositivo, new TiempoCarreraComparator(circuito));
+		Collections.sort(auxNegativo, new TiempoCarreraComparator(circuito));
+		
+		int posicion = 1;
+		for(Piloto piloto : auxPositivo) {
+			ResultadoCarrera resAntiguo = piloto.obtenerResultadoCircuito(circuito);
+			asignarPuntos(circuito, piloto, resAntiguo, posicion);
+			ResultadoCarrera res = piloto.obtenerResultadoCircuito(circuito);
+			System.out.println("@@@ Posición(" + posicion + "): " + piloto.getNombre() + " - Tiempo: " + res.getTiempo() + " minutos - Puntos: " + res.getPuntos() + " @@@");
+			posicion++;				
+		}
+		posicion = 1;
+		for(Piloto piloto : auxNegativo) {
+			ResultadoCarrera res = piloto.obtenerResultadoCircuito(circuito);
+			System.out.print("¡¡¡ Ha abandonado " + piloto.getNombre() + " - Tiempo: " + res.getTiempo() + " - Puntos: 0");
+			if(piloto.totalCarrerasAbandonadas() >= this.limiteAbandonos) {
+				System.out.print(" - Además ha sido descalificado para el resto del Campeonato");
+				piloto.setDescalificado(true);
+			}
+			System.out.println(" !!!");
+		}
+		System.out.println("");
+	}
+	public void enviarPilotoCocheAEscuderia(Escuderia escuderia, Piloto piloto) {
+		escuderia.recibirPiloto(piloto);
+	}
+	
+	public void asignarPuntos(Circuito circuito, Piloto piloto, ResultadoCarrera res, int posicion) {
+		switch(posicion) {
+		case 1:
+			piloto.añadirPuntos(circuito, res.getTiempo(), 10);
+			break;
+		case 2:
+			piloto.añadirPuntos(circuito, res.getTiempo(), 8);
+			break;
+		case 3:
+			piloto.añadirPuntos(circuito, res.getTiempo(), 6);
+			break;
+		case 4:
+			piloto.añadirPuntos(circuito, res.getTiempo(), 4);
+			break;
+		default:
+			piloto.añadirPuntos(circuito, res.getTiempo(), 2);
+				
+		}
+		
+		
+	}
 	/*
 	 * No hay pilotos disponibles (todos descalificados)
 	 * Solo queda 1 piloto (el resto descalificado)

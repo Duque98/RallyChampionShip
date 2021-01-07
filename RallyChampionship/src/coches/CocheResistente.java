@@ -30,12 +30,13 @@ public class CocheResistente extends CocheReal{
 	
 	//--Metodos--
 	@Override
-	public void reducirCombustible(Piloto piloto, Circuito circuito) {
-		if(this.depositoExtra > 0 && tiempoNecesarioFinalizar(piloto, circuito) > this.combustibleRestante) {
+	public void reducirCombustible(double tiempo) {
+		if(this.depositoExtra > 0 && tiempo > this.combustibleRestante) {
+			System.out.println("+++ El " + this.nombre + " tiene que recurrir al depósito de reserva para poder correr +++");
 			this.combustibleRestante += this.depositoExtra;
 			this.depositoExtra = 0;
 		}else {
-			this.combustibleRestante = this.combustibleRestante - tiempoNecesarioFinalizar(piloto, circuito);
+			this.combustibleRestante = Math.round((this.combustibleRestante - tiempo)* 100d) / 100d;
 		}
 	}
 

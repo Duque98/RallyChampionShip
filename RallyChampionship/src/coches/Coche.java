@@ -28,7 +28,7 @@ public interface Coche {
 	
 	public double calcularVelocidadReal(Piloto piloto, Circuito circuito);
 	public double tiempoNecesarioFinalizar(Piloto piloto, Circuito circuito);
-	public void reducirCombustible(Piloto piloto, Circuito circuito);
+	public void reducirCombustible(double tiempo);
 	
 	public void restarCombustible(double concentracion);
 	

@@ -155,7 +155,7 @@ public class CargarDatosCampeonatoCompleto {
 		//añadir a seat un Coche(nombre:"Seat Arona" - velocidad:RAPIDA - combustible:ESCASO);
 		Coche tarraco = new CocheResistente("Seat Tarraco", Velocidad.TORTUGA, Combustible.GENEROSO);
 		Coche ateca = new CocheRapido("Seat Ateca", Velocidad.GUEPARDO, Combustible.GENEROSO);
-		Coche arona = new CocheReal("Sear Arona", Velocidad.RAPIDA, Combustible.ESCASO);
+		Coche arona = new CocheReal("Seat Arona", Velocidad.RAPIDA, Combustible.ESCASO);
 		escuderiaSeat.añadirCoche(tarraco);
 		escuderiaSeat.añadirCoche(ateca);
 		escuderiaSeat.añadirCoche(arona);

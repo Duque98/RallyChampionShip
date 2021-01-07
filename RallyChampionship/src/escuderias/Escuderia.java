@@ -38,4 +38,6 @@ public interface Escuderia {
 	
 	public boolean tienePilotosDisponibles();
 	public int cuantosPilotoDisponibles() ;
+	
+	public void recibirPiloto(Piloto piloto);
 }

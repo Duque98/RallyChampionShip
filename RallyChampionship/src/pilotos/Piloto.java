@@ -22,25 +22,27 @@ public interface Piloto {
 	public double getValorConcentracion() ;
 	public void setConcentracion(Concentracion concentracion);
 	
-	public double getDestreza() ;
-	public void setDestreza(double destreza) ;
-	
 	public boolean isDescalificado() ;
 	public void setDescalificado(boolean descalificado) ;
 	
 	public HashMap<String, ResultadoCarrera> getHashResultados() ;
 	public void setHashResultados(HashMap<String, ResultadoCarrera> hashResultados) ;
 	
-	
+	public String getEscuderia();
+	public void setEscuderia(String escuderia);
 	
 	//--Metodos--
-	public void calcularDestreza();
+	
+	public void añadirPuntos(Circuito circuito, double tiempo, int puntos);
+	public abstract double calcularDestreza();
 	public int totalPuntos();
 	public void asignarCoche(Coche coche);
-	public boolean estaDescalificado();
 	public ResultadoCarrera obtenerResultadoCircuito(Circuito circuito);
 	public int totalCarrerasParticipadas();
 	public int totalCarrerasAbandonadas();
 	
 	public void conducirCoche(Circuito circuito);
+	
+	public boolean terminoCarrera(Circuito circuito);
+	
 }

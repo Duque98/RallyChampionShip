@@ -31,14 +31,17 @@ public class CocheRapido extends CocheReal{
 	//--Metodos--
 	@Override
 	public double calcularVelocidadReal(Piloto piloto, Circuito circuito) {
-		double velocidadReal = Math.round(((this.velocidad.getVelocidad() *  piloto.getDestreza()) / circuito.getComplejidadModificada())* 100d) / 100d;
+		double velocidadReal = Math.round(((this.velocidad.getVelocidad() *  piloto.calcularDestreza()) / circuito.getComplejidadModificada())* 100d) / 100d;
+		System.out.println("+++ Con estas condiciones es capaz de correr a " + velocidadReal + "km/hora +++");
 		if(this.depositoNitro > 0.0) {
-			double porcentaje = (velocidadReal * 20 ) / 100;
+			double porcentaje = Math.round(((velocidadReal * 20 ) / 100)* 100d) / 100d;
 			if(porcentaje <= this.depositoNitro) {
-				velocidadReal += porcentaje;
-				this.depositoNitro -= porcentaje;
+				velocidadReal = Math.round((velocidadReal + porcentaje)* 100d) / 100d;
+				this.depositoNitro = Math.round((this.depositoNitro - porcentaje)* 100d) / 100d;
+				System.out.println("+++ El "+ this.nombre +" usa " + porcentaje +" de nitro para alcanzar "+ velocidadReal + " km/hora y el nitro restante es " + this.depositoNitro + " +++");
 			}else {
-				velocidadReal += this.depositoNitro;
+				velocidadReal = Math.round((velocidadReal + this.depositoNitro)* 100d) / 100d;
+				System.out.println("+++ El "+ this.nombre +" usa " + this.depositoNitro +" de nitro para alcanzar "+ velocidadReal + " km/hora y el nitro restante es 0.0 +++");
 				this.depositoNitro = 0;
 			}
 		}

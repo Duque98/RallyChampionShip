@@ -54,6 +54,7 @@ public class EscuderiaReal implements Escuderia{
 	
 	public void añadirPiloto(Piloto piloto) {
 		this.aPilotos.add(piloto);
+		piloto.setEscuderia(this.nombre);
 	}
 	public void añadirCoche(Coche coche) {
 		this.aCoches.add(coche);
@@ -85,6 +86,7 @@ public class EscuderiaReal implements Escuderia{
 	}
 	
 	public void enviarPilotoAlCampeonato() {
+		ordenar();
 		if(quedanCochesConCombustible()) {
 			if(!this.aPilotos.isEmpty()) {
 				int i = 0;
@@ -100,7 +102,6 @@ public class EscuderiaReal implements Escuderia{
 								piloto.setCoche(coche);
 								enc = true;
 								this.aCoches.remove(coche);
-								this.aCoches.add(coche);
 							}else {
 								piloto.setCoche(null);
 							}
@@ -109,10 +110,33 @@ public class EscuderiaReal implements Escuderia{
 						Organizacion.getInstanceWithoutParameter().recibirPilotoDelCampeonato(piloto);
 						pilotoEnviado = true;
 						this.aPilotos.remove(piloto);
-						this.aPilotos.add(piloto);
 					}
+					i++;
 				}
 			}
+		}else {
+			if(!this.aPilotos.isEmpty()) {
+				int i = 0;
+				int j = 0;
+				boolean pilotoEnviado = false;
+				while (i < this.aPilotos.size() && !pilotoEnviado) {
+					Piloto piloto = this.aPilotos.get(i);
+					if(!piloto.isDescalificado()) {	
+						pilotoEnviado = true;
+						this.aPilotos.remove(piloto);
+						this.aPilotos.add(piloto);
+						System.out.println("¡¡¡ " + piloto.getNombre() + " NO ES ENVIADO A LA CARRERA porque su escudería(" + this.nombre +") no tiene más coches con combustible disponibles !!!");
+					}
+					i++;
+				}
+			}
+		}
+	}
+	
+	public void recibirPiloto(Piloto piloto) {
+		this.aPilotos.add(piloto);
+		if(piloto.getCoche()!=null) {
+			this.aCoches.add(piloto.getCoche());			
 		}
 	}
 	
