@@ -33,6 +33,11 @@ import strategy.IStrategy;
 
 public class CargarDatosCampeonatoCompleto {
 	public CargarDatosCampeonatoCompleto(){
+		System.out.println("*********************************************************************************************************");
+		System.out.println("*****************ESTA SIMULACIÓN CONCLUYE NORMALMENTE COMPLETÁNDOSE TODAS LAS CARRERAS*******************");
+		System.out.println("*********************************************************************************************************");
+		System.out.println("");
+		
 		//organizador debe ser una instancia única con la siguiente configuración:
 		//LimiteAbandonos=3, LimitePilotos=2, 		
 		// Circuitos ordenados de forma descendente de acuerdo a su distancia
@@ -109,21 +114,21 @@ public class CargarDatosCampeonatoCompleto {
 		//ordenaciónPilotos: ASCENDENTE por Puntos del Piloto, en caso de empate por Destreza, en caso de empate por nombre
 		//ordenaciónCoches: ASCENDENTE por Combustible restante del Coche , en caso de empate por nombre);
 		//peugeot se inscribe en campeonato
-		Escuderia escuderiaPeugeot = new EscuderiaReal("Peugeot",est1);
+		Escuderia escuderiaPeugeot = new EscuderiaReal("PEUGEOT",est1);
 		
 		//escudería citroen 
 		//Crear escuderia citroen con nombre:"Citroen"		
 		//ordenaciónPilotos: DESCENDENTE por Puntos del Piloto, en caso de empate por Destreza, en caso de empate por nombre
 		//ordenaciónCoches: DESCENDENTE por Combustible restante del Coche , en caso de empate por nombre);
 		//citroen se inscribe en campeonato
-		Escuderia escuderiaCitroen = new EscuderiaReal("Citroen",est2);
+		Escuderia escuderiaCitroen = new EscuderiaReal("CITROEN",est2);
 		
 		//escudería seat       
 		//Crear escuderia seat con nombre:"Seat"
 		//ordenaciónPilotos: ASCENDENTE por Puntos del Piloto, en caso de empate por Destreza, en caso de empate por nombre
 		//ordenaciónCoches: ASCENDENTE por Combustible restante del Coche , en caso de empate por nombre);
 		//seat se inscribe en campeonato
-		Escuderia escuderiaSeat = new EscuderiaReal("Seat",est1);
+		Escuderia escuderiaSeat = new EscuderiaReal("SEAT",est1);
 		
 		//creamos los pilotos y los coches de cada escudería 
 		//coches y pilotos de citroen
