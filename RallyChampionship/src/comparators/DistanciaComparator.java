@@ -3,7 +3,11 @@ package comparators;
 import java.util.Comparator;
 
 import circuitos.Circuito;
-
+/**
+ * Comparator para comparar los circuitos segun su distancia y en caso de empate por su nombre
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class DistanciaComparator implements Comparator<Circuito>{
 	@Override
 	public int compare(Circuito c1, Circuito c2) {

@@ -30,7 +30,11 @@ import strategy.Estrategia1;
 import strategy.Estrategia2;
 import strategy.Estrategia3;
 import strategy.IStrategy;
-
+/**
+ * Carga los datos para una simulacion que concluye antes de finalizar el campeonato con todos los pilotos descalificados
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class CargarDatosPremioDesierto {
 	
 	public CargarDatosPremioDesierto() {		

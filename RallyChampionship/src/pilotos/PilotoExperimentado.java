@@ -10,13 +10,23 @@ import enumerados.Concentracion;
  */
 public class PilotoExperimentado extends PilotoReal{
 	//--Constructores
+	/**
+	 * Constructor por defecto
+	 */
 	public PilotoExperimentado () {
 		super();
 	}
-	
+	/**
+	 * Constructor parametrizado
+	 * @param nombre_
+	 * @param concentracion_
+	 */
 	public PilotoExperimentado (String nombre_,Concentracion concentracion_) {
 		super(nombre_, concentracion_);
 	}
+	/**
+	 * Metodo para calcular la destreza
+	 */
 	@Override
 	public double calcularDestreza() {
 		return Math.round((((this.concentracion.getConcentracion() + 3) / 130) * 1.03 ) * 100d) / 100d;

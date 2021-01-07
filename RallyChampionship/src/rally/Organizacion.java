@@ -19,24 +19,27 @@ import pilotos.Piloto;
 import pilotos.ResultadoCarrera;
 
 /**
- * Clase modelo para representar la Organizacion
+ * Clase modelo para representar la Organizacion, llevara a cabo la simulacion del proyecto
  * @author Jose Ignacio Duque Blazquez
  *
  */
 public class Organizacion {
 	//--Atributos--
 	private static Organizacion org; 			//Singleton
-	
 	private int limiteAbandonos; 				//Numero maximo de abandonos que un piloto puede tener en el transcurso de un campeonato
 	private int limitePilotos;					//Numero maximo de pilotos que una escuderia puede enviar a la competicion
-
-	private TreeSet<Circuito> tsCircuitos;		//Circuitos que componen el campeonato 
-	
-	private List<Escuderia> aEscuderias;	//Escuderias que se han inscrito para el campeonato
-	private List<Piloto> aPilotos;			//Pilotos junto al coche que van a competir en una carrera 
+	private TreeSet<Circuito> tsCircuitos;		//Treeset de circuitos que componen el campeonato 
+	private List<Escuderia> aEscuderias;		//Lista (ArrayList) de escuderias que se han inscrito para el campeonato
+	private List<Piloto> aPilotos;				//Lista (ArrayList) de pilotos junto al coche que van a competir en una carrera 
 	
 	
 	//--Constructores--
+	/**
+	 * Constructor de la clase, privado para el correcto aplicamiento del patron singleton
+	 * @param limiteAbandonos
+	 * @param limitePilotos
+	 * @param ordenCircuitos
+	 */
 	private Organizacion(int limiteAbandonos, int limitePilotos, Comparator<Circuito> ordenCircuitos) {
 		this.limiteAbandonos = limiteAbandonos;
 		this.limitePilotos = limitePilotos;
@@ -45,6 +48,13 @@ public class Organizacion {
 		this.aPilotos = new ArrayList<Piloto>();
 	}
 	
+	/**
+	 * Metodo para aplicar el patron singleton
+	 * @param limiteAbandonos
+	 * @param limitePilotos
+	 * @param ordenCircuitos
+	 * @return Instancia de la clase
+	 */
 	public static Organizacion getInstance(int limiteAbandonos, int limitePilotos, Comparator<Circuito> ordenCircuitos) {
 		if(org == null) {
 			org = new Organizacion(limiteAbandonos, limitePilotos, ordenCircuitos);
@@ -52,6 +62,10 @@ public class Organizacion {
 		return org;
 	}
 	
+	/**
+	 * Metodo para aplicar el patron singleton, solo vale para devolverlo, devuelve null en caso de que no exista ninguna organizacion
+	 * @return
+	 */
 	public static Organizacion getInstanceWithoutParameter() {
 		if(org != null) {
 			return org;
@@ -67,21 +81,31 @@ public class Organizacion {
 	public void setLimitePilotos(int limitePilotos) {this.limitePilotos = limitePilotos;}
 	
 	//--Metodos--
+	/**
+	 * Añade un circuito al campeonado
+	 * @param circuito
+	 */
 	public void añadirCircuito(Circuito circuito) {
 		this.tsCircuitos.add(circuito);
 	}
+	/**
+	 * Metodo para permitir la inscripcion de una escuderia
+	 * @param escuderia
+	 */
 	public void inscribirEscuderia(Escuderia escuderia) {
 		this.aEscuderias.add(escuderia);
 		Collections.sort(this.aEscuderias, Collections.reverseOrder(new EscuderiaTotalPuntosComparator()));
 	}
-	
+	/**
+	 * Recibe un piloto que competira en el campeonato
+	 * @param piloto
+	 */
 	public void recibirPilotoDelCampeonato(Piloto piloto) {
 		this.aPilotos.add(piloto);
 	}
-	
-
-
-	//TODO - Gestionar el desarrollo del campeonato
+	/**
+	 * Gestiona el desarrollo de la competicion
+	 */
 	public void simulacion() {
 		System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\r\n" + 
 							"||||||||||||||||||| CIRCUITOS DEL CAMPEONATO |||||||||||||||||||\r\n" + 
@@ -105,7 +129,12 @@ public class Organizacion {
 		gestionarFinCampeonato();
 	}
 	
-	
+	/**
+	 * Gestiona las carreras del campeonato
+	 *  - Muestra los pilotos que van a competir por carrera
+	 *  - Gestiona la circulacion de cada piloto
+	 *  
+	 */
 	public void gestionarCelebracionCarrera() {
 		int numCarrera = 1;
 		boolean encFin = false;
@@ -185,15 +214,17 @@ public class Organizacion {
 						i++;
 					}
 				
-				}
-				
+				}	
 				clasificacionCarrera(circuito);
 			}
 			this.aPilotos = new ArrayList<Piloto>();
 			numCarrera++;
 		}
 	}
-	
+	/**
+	 * Gestiona la clasificacion de una carrera y la muestra
+	 * @param circuito
+	 */
 	public void clasificacionCarrera(Circuito circuito) {
 		System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println("+++++++++++++++++ Clasificación final de la carrera en " + circuito.getNombre() + " ++++++++++++++++++");
@@ -232,32 +263,12 @@ public class Organizacion {
 		}
 		System.out.println("");
 	}
-	public void enviarPilotoCocheAEscuderia(Escuderia escuderia, Piloto piloto) {
-		escuderia.recibirPiloto(piloto);
-	}
-	
-	public void asignarPuntos(Circuito circuito, Piloto piloto, ResultadoCarrera res, int posicion) {
-		switch(posicion) {
-		case 1:
-			piloto.añadirPuntos(circuito, res.getTiempo(), 10);
-			break;
-		case 2:
-			piloto.añadirPuntos(circuito, res.getTiempo(), 8);
-			break;
-		case 3:
-			piloto.añadirPuntos(circuito, res.getTiempo(), 6);
-			break;
-		case 4:
-			piloto.añadirPuntos(circuito, res.getTiempo(), 4);
-			break;
-		default:
-			piloto.añadirPuntos(circuito, res.getTiempo(), 2);
-				
-		}
-		
-		
-	}
-	
+	/**
+	 * Gestiona el fin del campeonato
+	 *   -Muestra los pilotos descalificados y los no descalifidaos
+	 *   -La clasificacion de las escuderias (tambien las descalificadas)
+	 *   -Comprueba si el campeonato a quedado desierto
+	 */
 	public void gestionarFinCampeonato() {
 		System.out.println("****************************************************");
 		System.out.println("**************** FIN DEL CAMPEONATO ****************");
@@ -315,8 +326,6 @@ public class Organizacion {
 			System.out.println("");
 		}
 	
-		
-		
 		System.out.println("****************************************************");
 		System.out.println("******** CLASIFICACIÓN FINAL DE ESCUDERÍAS *********");
 		System.out.println("****************************************************");
@@ -358,23 +367,38 @@ public class Organizacion {
 			}
 		}
 	}
-	
-	
-	/*
-	 * No hay pilotos disponibles (todos descalificados)
-	 * Solo queda 1 piloto (el resto descalificado)
+	/**
+	 * Asigna los puntos al piloto correspondiente, en el circuito que sea, con el tiempo y los puntos correspondientes
+	 * @param circuito
+	 * @param piloto
+	 * @param res
+	 * @param posicion
 	 */
-	public boolean esFin() {
-		boolean fin = false;
-		int i = 0;
-		int numeroPilotosDisponibles = 0;
-		while (i < this.aEscuderias.size()) {
-			numeroPilotosDisponibles += this.aEscuderias.get(i).cuantosPilotoDisponibles();
-			i++;
-		}
-		if(numeroPilotosDisponibles < 1) {
-			fin = true;
-		}
-		return fin;
+	public void asignarPuntos(Circuito circuito, Piloto piloto, ResultadoCarrera res, int posicion) {
+		switch(posicion) {
+		case 1:
+			piloto.añadirPuntos(circuito, res.getTiempo(), 10);
+			break;
+		case 2:
+			piloto.añadirPuntos(circuito, res.getTiempo(), 8);
+			break;
+		case 3:
+			piloto.añadirPuntos(circuito, res.getTiempo(), 6);
+			break;
+		case 4:
+			piloto.añadirPuntos(circuito, res.getTiempo(), 4);
+			break;
+		default:
+			piloto.añadirPuntos(circuito, res.getTiempo(), 2);
+				
+		}	
+	}
+	/**
+	 * Envia un piloto junto a su coche a su escuderia
+	 * @param escuderia
+	 * @param piloto
+	 */
+	public void enviarPilotoCocheAEscuderia(Escuderia escuderia, Piloto piloto) {
+		escuderia.recibirPiloto(piloto);
 	}
 }

@@ -6,7 +6,7 @@ import enumerados.Velocidad;
 import pilotos.Piloto;
 
 /**
- * Clase modelo de un coche
+ * Interfaz de un coche
  * @author Jose Ignacio Duque Blazquez
  *
  */

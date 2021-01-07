@@ -11,10 +11,18 @@ public class ResultadoCarrera {
 	private int puntos;
 	
 	//--Constructores
+	/**
+	 * Constructor por defecto
+	 */
 	public ResultadoCarrera() {
 		this.tiempo = 0.0;
 		this.puntos = 0;
 	}
+	/**
+	 * Constructor parametrizado
+	 * @param tiempo_
+	 * @param puntos_
+	 */
 	public ResultadoCarrera(double tiempo_, int puntos_) {
 		this.tiempo = tiempo_;
 		this.puntos = puntos_;

@@ -3,7 +3,11 @@ package comparators;
 import java.util.Comparator;
 
 import pilotos.Piloto;
-
+/**
+ * Comparator para comparar los pilotos segun sus carreras participadas y en caso de empate por su nombre
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class PilotoCarreraTerminadaComparator implements Comparator<Piloto>{
 	@Override
 	public int compare(Piloto p1, Piloto p2) {

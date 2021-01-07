@@ -9,7 +9,7 @@ import pilotos.Piloto;
 import strategy.IStrategy;
 
 /**
- * Clase modelo para representar una Escuderia
+ * Interfaz que representa una escuderia
  * @author Jose Ignacio Duque Blazquez
  *
  */
@@ -26,8 +26,6 @@ public interface Escuderia {
 	public void ordenar();
 	public void añadirPiloto(Piloto piloto);
 	public void añadirCoche(Coche coche);
-	
-	public void mostrar();
 	
 	public void inscribirseAlCampeonato();
 	public void enviarPilotoAlCampeonato();

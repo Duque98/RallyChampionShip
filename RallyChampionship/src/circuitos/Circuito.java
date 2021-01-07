@@ -5,6 +5,11 @@ import java.util.List;
 import enumerados.Complejidad;
 import enumerados.Distancia;
 
+/**
+ * Interfaz para representar un circuito
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public interface Circuito {
 	//--Getters & Setters
 	public String getNombre();

@@ -4,6 +4,11 @@ import java.util.Comparator;
 
 import circuitos.Circuito;
 
+/**
+ * Comparator para comparar los circuitos segun su nombre
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class CircuitoNombreComparator implements Comparator<Circuito>{
 
 	@Override

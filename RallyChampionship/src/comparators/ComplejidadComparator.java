@@ -3,7 +3,11 @@ package comparators;
 import java.util.Comparator;
 
 import circuitos.Circuito;
-
+/**
+ * Comparator para comparar los circuitos segun su complejidad y en caso de empate por nombre
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class ComplejidadComparator implements Comparator<Circuito>{
 
 	@Override

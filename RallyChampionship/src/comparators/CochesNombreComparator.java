@@ -3,7 +3,11 @@ package comparators;
 import java.util.Comparator;
 
 import coches.Coche;
-
+/**
+ * Comparator para comparar los coches segun su nombre
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class CochesNombreComparator  implements Comparator<Coche>{
 
 	@Override

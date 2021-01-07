@@ -30,7 +30,11 @@ import rally.Organizacion;
 import strategy.Estrategia1;
 import strategy.Estrategia2;
 import strategy.IStrategy;
-
+/**
+ * Carga los datos para una simulacion que concluye completandose todas las carreras
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class CargarDatosCampeonatoCompleto {
 	public CargarDatosCampeonatoCompleto(){
 		System.out.println("*********************************************************************************************************");

@@ -12,22 +12,33 @@ import pilotos.ResultadoCarrera;
 import rally.Organizacion;
 import strategy.IStrategy;
 
-
+/**
+ * Clase modelo para representar una escuderia
+ *  @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class EscuderiaReal implements Escuderia{
 	//Strategy
-	private IStrategy strategy;
-	
+	private IStrategy strategy;		//Interfaz para aplicar el patron strategy para la ordenacion
 	//--Atributos--
-	private String nombre;
-	private List<Piloto> aPilotos; 
-	private List<Coche> aCoches;	
+	private String nombre;			//Nombre de la escuderia
+	private List<Piloto> aPilotos;  //List (ArrayList) de pilotos 
+	private List<Coche> aCoches;	//List (ArrayList) de coches 
 	
 	//--Constructores--
+	/**
+	 * Constructor por defecto
+	 */
 	public EscuderiaReal() {
 		this.nombre = "";
 		this.aPilotos = null;
 		this.aCoches = null;
 	}
+	/**
+	 * Constructor parametrizado
+	 * @param nombre_
+	 * @param strategy
+	 */
 	public EscuderiaReal(String nombre_,IStrategy strategy) {
 		this.nombre = nombre_;
 		this.strategy = strategy;
@@ -46,30 +57,31 @@ public class EscuderiaReal implements Escuderia{
 	public void setStrategy(IStrategy strategy) {this.strategy = strategy;}
 	
 	//--Metodos--
+	/**
+	 * Si tiene una estrategia de ordenacion (strategy) ordenara los pilotos y coches segun la estrategia
+	 */
 	public void ordenar() {
 		if(this.strategy != null) {
 			this.strategy.ordenar(this.aPilotos, this.aCoches);			
 		}
 	}
-	
+	/**
+	 * Añade un piloto a su estructura de datos y añade al piloto la escuderia a la que pertenece
+	 */
 	public void añadirPiloto(Piloto piloto) {
 		this.aPilotos.add(piloto);
 		piloto.setEscuderia(this.nombre);
 	}
+	/**
+	 * Añade un coche a su estructura de datos
+	 */
 	public void añadirCoche(Coche coche) {
 		this.aCoches.add(coche);
 	}
-	
-	public void mostrar() {
-		System.out.println("Mostrando los coches...");
-		for (int i = 0; i < this.aCoches.size(); i++) {
-			System.out.println(this.aCoches.get(i).getNombre());
-		}
-		System.out.println("Mostrando los pilotos...");
-		for (int i = 0; i < this.aPilotos.size(); i++) {
-			System.out.println(this.aPilotos.get(i).getNombre());
-		}
-	}
+	/**
+	 * Devuelve los puntos totales de los pilotos sin descalificar 
+	 * @return
+	 */
 	public int puntosTotales() {
 		int totalPuntos = 0;
 		for (Piloto piloto: this.aPilotos) {
@@ -80,11 +92,16 @@ public class EscuderiaReal implements Escuderia{
 		}
 		return totalPuntos;
 	}
-	
+	/**
+	 * Se inscribe en la organizacion para competir
+	 */
 	public void inscribirseAlCampeonato() {
 		Organizacion.getInstanceWithoutParameter().inscribirEscuderia(this);
 	}
-	
+	/**
+	 * Envia un piloto junto a su coche a competir 
+	 *  - Si no tiene coches con combustible no lo envia y muestra un mensaje
+	 */
 	public void enviarPilotoAlCampeonato() {
 		ordenar();
 		if(quedanCochesConCombustible()) {
@@ -132,15 +149,19 @@ public class EscuderiaReal implements Escuderia{
 			}
 		}
 	}
-	
+	/**
+	 * Recibe un piloto y si tiene un coche tambien lo recibe
+	 */
 	public void recibirPiloto(Piloto piloto) {
 		this.aPilotos.add(piloto);
 		if(piloto.getCoche()!=null) {
 			this.aCoches.add(piloto.getCoche());			
 		}
 	}
-	
-	//Devuelve true si todavia tiene algun coche con combustible
+	/**
+	 * Devuelve true si todavia tiene algun coche con combustible
+	 * @return
+	 */
 	public boolean quedanCochesConCombustible() {
 		boolean quedanCoches = false;
 		if(!this.aCoches.isEmpty()) {
@@ -154,7 +175,9 @@ public class EscuderiaReal implements Escuderia{
 		}
 		return quedanCoches;
 	}
-	
+	/**
+	 * Devuelve todas las carreras terminadas por todos sus pilotos
+	 */
 	public int totalCarrerasTerminadas() {
 		int totalTerminadas = 0;
 		for(Piloto piloto : this.aPilotos) {
@@ -163,7 +186,9 @@ public class EscuderiaReal implements Escuderia{
 		return totalTerminadas;
 	}
 	
-	//Devuelve true si todavia tiene algun piloto sin descalificar, devuelve false si todos descalificados
+	/**
+	 * Devuelve true si todavia tiene algun piloto sin descalificar, devuelve false si todos descalificados
+	 */
 	public boolean tienePilotosDisponibles() {
 		int i = 0;
 		boolean quedanPilotos = false;
@@ -175,6 +200,9 @@ public class EscuderiaReal implements Escuderia{
 		}
 		return quedanPilotos;
 	}
+	/**
+	 * Devuelve cuantos pilotos estan sin descalificar
+	 */
 	public int cuantosPilotoDisponibles() {
 		int pilotosDisponibles = 0;
 		for(Piloto piloto : this.aPilotos) {
@@ -184,6 +212,9 @@ public class EscuderiaReal implements Escuderia{
 		}
 		return pilotosDisponibles;
 	}
+	/**
+	 * Metodo toString para mostrar la informacion de una escuderia
+	 */
 	@Override
 	public String toString() {
 		String aux = "";

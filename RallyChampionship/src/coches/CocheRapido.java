@@ -6,7 +6,7 @@ import enumerados.Velocidad;
 import pilotos.Piloto;
 
 /**
- * Clase modelo de un subtipo de Coche
+ * Clase modelo de un subtipo de Coche, un coche rapido
  * @author Jose Ignacio Duque Blazquez
  *
  */
@@ -15,10 +15,19 @@ public class CocheRapido extends CocheReal{
 	private double depositoNitro;
 	
 	//--Constructores--
+	/**
+	 * Constructor por defecto
+	 */
 	public CocheRapido() {
 		super(); 
 		this.depositoNitro = 80.0;
 	}
+	/**
+	 * Constructor parametrizado
+	 * @param nombre_
+	 * @param velocidad_
+	 * @param combustible_
+	 */
 	public CocheRapido(String nombre_, Velocidad velocidad_ , Combustible combustible_) {
 		super(nombre_,velocidad_,combustible_);
 		this.depositoNitro = 80.0; //Siempre va a ser 80L
@@ -29,6 +38,11 @@ public class CocheRapido extends CocheReal{
 	public void setDepositoNitro(double depositoNitro_) { this.depositoNitro = depositoNitro_;}
 	
 	//--Metodos--
+	/**
+	 * Calcula la velocidad real de un coche para un piloto en un circuito
+	 * @param piloto
+	 * @param circuito
+	 */
 	@Override
 	public double calcularVelocidadReal(Piloto piloto, Circuito circuito) {
 		double velocidadReal = Math.round(((this.velocidad.getVelocidad() *  piloto.calcularDestreza()) / circuito.getComplejidadModificada())* 100d) / 100d;
@@ -47,9 +61,9 @@ public class CocheRapido extends CocheReal{
 		}
 		return Math.round((velocidadReal)* 100d) / 100d;
 	}
-	
-
-	//TODO - Metodos de toString, CompareTo,...
+	/**
+	 * Metodo toString para mostrar la informacion de un coche
+	 */
 	@Override
 	public String toString() {
 		return "<coche: " + this.nombre + "> <tipo:CocheRapido> <vel_teó: " + this.velocidad.getNombre() + "(" + this.velocidad.getVelocidad() + 

@@ -29,7 +29,11 @@ import rally.Organizacion;
 import strategy.Estrategia1;
 import strategy.Estrategia2;
 import strategy.IStrategy;
-
+/**
+ * Carga los datos para una simulacion que concluye antes de finalizar el campeonato con un unico piloto sin descalificar
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class CargaDatosFinPrematuro {
 	public CargaDatosFinPrematuro() {
 		System.out.println("*********************************************************************************************************");

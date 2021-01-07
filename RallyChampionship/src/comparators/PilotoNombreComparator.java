@@ -3,7 +3,11 @@ package comparators;
 import java.util.Comparator;
 
 import pilotos.Piloto;
-
+/**
+ * Comparator para comparar los pilotos segun su nombre
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class PilotoNombreComparator implements Comparator<Piloto>{
 	
 	@Override

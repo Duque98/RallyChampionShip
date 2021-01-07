@@ -3,7 +3,11 @@ package comparators;
 import java.util.Comparator;
 
 import escuderias.Escuderia;
-
+/**
+ * Comparator para comparar las escuderias segun su total de carreras terminadas y en caso de empate por nombre
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class EscuderiaCarrerasTerminadasComparator implements Comparator<Escuderia>{
 	@Override
 	public int compare(Escuderia e1, Escuderia e2) {

@@ -3,7 +3,11 @@ package comparators;
 import java.util.Comparator;
 
 import coches.Coche;
-
+/**
+ * Comparator para comparar los coches segun su combustible restante y en caso de empate por nombre
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class CochesStrategy1Comparator implements Comparator<Coche>{
 
 	@Override

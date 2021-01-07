@@ -4,7 +4,11 @@ import java.util.Comparator;
 
 import circuitos.Circuito;
 import pilotos.Piloto;
-
+/**
+ * Comparator para comparar los pilotos segun el tiempo obtenido como resultado de una carrera
+ * @author Jose Ignacio Duque Blazquez
+ *
+ */
 public class TiempoCarreraComparator implements Comparator<Piloto>{
 	private Circuito circuito;
 	public TiempoCarreraComparator(Circuito circuito) {
