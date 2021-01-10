@@ -62,4 +62,19 @@ public class CocheResistente extends CocheReal{
 		return "<coche: " + this.nombre + "> <tipo: CocheResistente> <vel_teó: " + this.velocidad.getNombre() + "(" + this.velocidad.getVelocidad() + 
 				")> <comb: " + this.combustible.getNombre() + "(" + this.combustible.getCombustible() + ")(actual:" + this.combustibleRestante + ")>> <reserva: " + this.depositoExtra + ">";
 	}
+	/**
+	 * Metodo equals para saber si dos objetos son iguales
+	 * @param obj
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true; //Ambos referencian al mismo objeto
+		}
+		if(!(obj instanceof CocheResistente)) {
+			return false; //Tienen diferentes tipos
+		}
+		CocheResistente other = (CocheResistente) obj;
+		return super.equals(other) && this.depositoExtra == other.getDepositoExtra();
+	}
 }

@@ -3,6 +3,7 @@ package pilotos;
 import java.util.HashMap;
 
 import circuitos.Circuito;
+import circuitos.CircuitoReal;
 import coches.Coche;
 import enumerados.Concentracion;
 
@@ -198,4 +199,30 @@ public abstract class PilotoReal implements Piloto{
 				")> <descalificado:" + this.descalificado + ">";
 	}
 	
+	/**
+	 * Metodo equals para saber si dos objetos son iguales
+	 * @param obj
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true; //Ambos referencian al mismo objeto
+		}
+		if(!(obj instanceof PilotoReal)) {
+			return false; //Tienen diferentes tipos
+		}
+		PilotoReal other = (PilotoReal) obj;
+		return this.nombre.equals(other.getNombre()) && this.escuderia.equals(other.getEscuderia()) && this.descalificado == other.isDescalificado() && this.coche == other.getCoche() &&
+				this.concentracion == other.getConcentracion() && this.hashResultados == other.getHashResultados();
+	}
+	/**
+	 * Metodo hashCode 
+	 */
+	@Override
+	public int hashCode() {
+		int result = 17;
+		result = 7 * result + this.nombre.hashCode();
+		result = 13 * result + this.escuderia.hashCode();
+		return result;
+	}
 }

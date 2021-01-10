@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import circuitos.CircuitoReal;
 import coches.Coche;
 import pilotos.Piloto;
 import pilotos.ResultadoCarrera;
@@ -228,5 +229,30 @@ public class EscuderiaReal implements Escuderia{
 			aux += "\n";
 		}
 		return aux;
+	}
+	
+	/**
+	 * Metodo equals para saber si dos objetos son iguales
+	 * @param obj
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true; //Ambos referencian al mismo objeto
+		}
+		if(!(obj instanceof EscuderiaReal)) {
+			return false; //Tienen diferentes tipos
+		}
+		EscuderiaReal other = (EscuderiaReal) obj;
+		return this.nombre.equals(other.getNombre()) && this.strategy == other.getStrategy() && this.aPilotos == other.getAPilotos() && this.aCoches == other.getACoches();
+	}
+	/**
+	 * Metodo hashCode 
+	 */
+	@Override
+	public int hashCode() {
+		int result = 17;
+		result = 7 * result + this.nombre.hashCode();
+		return result;
 	}
 }

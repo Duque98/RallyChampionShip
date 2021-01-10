@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.TreeSet;
 
 import circuitos.Circuito;
+import coches.Coche;
+import comparators.CochesStrategy1Comparator;
 import comparators.EscuderiaTotalPuntosComparator;
+import comparators.PilotoDestrezaComparator;
 import comparators.PilotoParrillaSalidaComparator;
 import comparators.PilotosStrategy1Comparator;
 import comparators.TiempoCarreraComparator;
@@ -343,14 +346,36 @@ public class Organizacion {
 			posicion = 1;
 			Collections.sort(this.aEscuderias, Collections.reverseOrder(new EscuderiaTotalPuntosComparator()));
 			for(Escuderia escuderia : this.aEscuderias) {
-				escuderia.ordenar();
 				if(escuderia.tienePilotosDisponibles()) {
+					pilotosSinDescalificar = new ArrayList<Piloto>();
+					pilotosDescalificados = new ArrayList<Piloto>();
+					ArrayList<Coche> coches = (ArrayList<Coche>) escuderia.getACoches();
+					ArrayList<Piloto> pilotos = (ArrayList<Piloto>) escuderia.getAPilotos();
+					for(Piloto piloto : pilotos) {
+						if(!piloto.isDescalificado()) {
+							pilotosSinDescalificar.add(piloto);
+						}else {
+							pilotosDescalificados.add(piloto);
+						}
+					}
 					System.out.println("@@@ Posición("+ posicion + ") " + escuderia.getNombre() + " con " + escuderia.puntosTotales() + " puntos @@@");
 					System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-					System.out.println(escuderia.toString());
+					
+					Collections.sort(pilotosSinDescalificar, new PilotoParrillaSalidaComparator());
+					Collections.sort(pilotosDescalificados,new PilotoParrillaSalidaComparator());
+					Collections.sort(coches,Collections.reverseOrder(new CochesStrategy1Comparator()));
+					
+					for(Piloto piloto : pilotosSinDescalificar) {
+						System.out.println(piloto.toString());
+					}
+					for(Piloto piloto : pilotosDescalificados) {
+						System.out.println(piloto.toString());
+					}
+					for(Coche coche : coches) {
+						System.out.println(coche.toString());
+					}
 					System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 				}
-					
 			}
 		}
 		System.out.println("****************************************************");
@@ -358,11 +383,34 @@ public class Organizacion {
 		System.out.println("****************************************************");
 		Collections.sort(this.aEscuderias, new EscuderiaTotalPuntosComparator());
 		for(Escuderia escuderia : this.aEscuderias) {
-			escuderia.ordenar();
 			if(!escuderia.tienePilotosDisponibles()) {
+				pilotosSinDescalificar = new ArrayList<Piloto>();
+				pilotosDescalificados = new ArrayList<Piloto>();
+				ArrayList<Coche> coches = (ArrayList<Coche>) escuderia.getACoches();
+				ArrayList<Piloto> pilotos = (ArrayList<Piloto>) escuderia.getAPilotos();
+				for(Piloto piloto : pilotos) {
+					if(!piloto.isDescalificado()) {
+						pilotosSinDescalificar.add(piloto);
+					}else {
+						pilotosDescalificados.add(piloto);
+					}
+				}
 				System.out.println("¡¡¡ Escudería Descalificada: " + escuderia.getNombre() + " con 0.0 puntos !!!");
 				System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-				System.out.println(escuderia.toString());
+				
+				Collections.sort(pilotosSinDescalificar, new PilotoParrillaSalidaComparator());
+				Collections.sort(pilotosDescalificados,new PilotoParrillaSalidaComparator());
+				Collections.sort(coches,Collections.reverseOrder(new CochesStrategy1Comparator()));
+				
+				for(Piloto piloto : pilotosSinDescalificar) {
+					System.out.println(piloto.toString());
+				}
+				for(Piloto piloto : pilotosDescalificados) {
+					System.out.println(piloto.toString());
+				}
+				for(Coche coche : coches) {
+					System.out.println(coche.toString());
+				}
 				System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 			}
 		}

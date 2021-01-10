@@ -41,13 +41,13 @@ public class Main {
 		//Descomentar el conjunto de datos de los 3 siguientes que se quiera probar
 		
 		//Descomentar el siguiente conjunto de datos si se quiere probar simulación del campeonato que termina de forma normal disputándose todas las carreras
-		//CargarDatosCampeonatoCompleto initdata = new CargarDatosCampeonatoCompleto();
+		CargarDatosCampeonatoCompleto initdata = new CargarDatosCampeonatoCompleto();
 		
 		//Descomentar el siguiente conjunto de datos si se quiere probar simulación del campeonato que termina antes de que se realicen todas las carreras con el único piloto superviviente y su escudería declarados como campeones
-		CargaDatosFinPrematuro initdata = new CargaDatosFinPrematuro();		
+		//CargaDatosFinPrematuro initdata = new CargaDatosFinPrematuro();		
 		
 		//Descomentar el siguiente conjunto de datos si se quiere probar simulación del campeonato que termina antes de que se realicen todas las carreras sin ningún piloto superviviente y declarándose el campeonato como desierto
-	//	CargarDatosPremioDesierto initdata = new CargarDatosPremioDesierto(); 
+		//CargarDatosPremioDesierto initdata = new CargarDatosPremioDesierto(); 
 
         //llamada al método de Organización que gestiona el desarrollo del campeonato
 		//->llamada al método de la instancia de Organización que gestiona el Campeonato();

@@ -80,5 +80,30 @@ public class CircuitoReal implements Circuito{
 	public String toComplicacion() {
 		return "";
 	}
-
+	
+	/**
+	 * Metodo equals para saber si dos objetos son iguales
+	 * @param obj
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true; //Ambos referencian al mismo objeto
+		}
+		if(!(obj instanceof CircuitoReal)) {
+			return false; //Tienen diferentes tipos
+		}
+		CircuitoReal other = (CircuitoReal) obj;
+		return this.nombre.equals(other.getNombre()) && this.complejidad == other.getComplejidad() && this.distancia == other.getDistancia();
+	}
+	/**
+	 * Metodo hashCode 
+	 */
+	@Override
+	public int hashCode() {
+		int result = 17;
+		result = 7 * result + this.nombre.hashCode();
+		result = 13 * result + this.distancia.getNombre().hashCode();
+		return result;
+	}
 }

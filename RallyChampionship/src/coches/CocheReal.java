@@ -4,6 +4,7 @@ import circuitos.Circuito;
 import enumerados.Combustible;
 import enumerados.Velocidad;
 import pilotos.Piloto;
+import pilotos.PilotoReal;
 /**
  * Clase modelo que representa un coche
  * @author Jose Ignacio Duque Blazquez
@@ -100,5 +101,29 @@ public class CocheReal implements Coche{
 		return "<coche: " + this.nombre + "> <tipo: CocheNormal> <vel_teó: " + this.velocidad.getNombre() + "(" + this.velocidad.getVelocidad() + 
 				")> <comb: " + this.combustible.getNombre() + "(" + this.combustible.getCombustible() + ")(actual:" + this.combustibleRestante + ")>";
 	}
-	
+	/**
+	 * Metodo equals para saber si dos objetos son iguales
+	 * @param obj
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true; //Ambos referencian al mismo objeto
+		}
+		if(!(obj instanceof CocheReal)) {
+			return false; //Tienen diferentes tipos
+		}
+		CocheReal other = (CocheReal) obj;
+		return this.nombre.equals(other.getNombre()) && this.velocidad == other.getVelocidad() && this.combustible == other.getCombustible() && this.combustibleRestante == other.getCombustibleRestante();
+	}
+	/**
+	 * Metodo hashCode 
+	 */
+	@Override
+	public int hashCode() {
+		int result = 17;
+		result = 7 * result + this.nombre.hashCode();
+		result = 13 * result + this.velocidad.getNombre().hashCode();
+		return result;
+	}
 }
